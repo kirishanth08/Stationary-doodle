@@ -1,0 +1,72 @@
+Doodle Desk — Installation Guide
+===============================================
+Assignment 08 — Static HTML Website
+
+REQUIREMENTS
+------------
+- A modern web browser (Chrome, Firefox, Safari, or Edge)
+- No server-side runtime required (pure front-end)
+- Optional: local web server for best results (Live Server, Python http.server, etc.)
+
+FOLDER STRUCTURE
+----------------
+stationery-store/
+├── assets/          CSS, JS, images, fonts
+├── pages/           All 12 HTML pages
+├── documentation/   Guides and credits
+├── sitemap.xml      SEO sitemap
+├── robots.txt       Search engine directives
+└── README.md        Project overview
+
+INSTALLATION STEPS
+------------------
+1. Download or clone the stationery-store folder to your computer.
+
+2. (Optional) Generate WebP placeholder images if not included:
+   python assets/images/generate_images.py
+   Requires Python 3 with Pillow: pip install Pillow
+
+3. Open the website:
+   Option A — Direct file open:
+     Navigate to pages/index.html and open in your browser.
+
+   Option B — Local server (recommended):
+     cd stationery-store
+     python -m http.server 8080
+     Visit http://localhost:8080/pages/index.html
+
+4. Configure form integrations before production:
+   - Contact form (contact.html): Replace Formspree URL
+     action="https://formspree.io/f/YOUR_FORM_ID"
+   - Bulk order form (bulk-orders.html): Same Formspree endpoint
+   - Newsletter (index.html, coming-soon.html): Replace Mailchimp URL
+   - Google Maps (contact.html): Replace iframe src with your embed URL
+
+5. Update SEO files:
+   - sitemap.xml: Replace domain with your live URL
+   - robots.txt: Update Sitemap URL
+   - index.html JSON-LD: Update store URL and contact details
+
+DEPLOYMENT
+----------
+Upload the entire stationery-store folder to any static host:
+- Netlify, Vercel, GitHub Pages, AWS S3, or traditional web hosting
+
+For GitHub Pages, set pages/ as the root or move index.html to repository root.
+
+BROWSER TESTING
+---------------
+Test at these viewport widths:
+- Mobile: 375px, 640px
+- Tablet: 768px, 1024px
+- Desktop: 1280px, 1440px
+
+Verify dark mode toggle, RTL toggle, form validation, and bundle calculator.
+
+TROUBLESHOOTING
+---------------
+- Images not loading: Run generate_images.py or check ../assets/images/ paths
+- Forms not submitting: Configure Formspree/Mailchimp endpoints
+- Styles missing: Ensure CDN links are accessible (internet required for Bootstrap/Fonts)
+
+Support: hello@writeright-stationery.com

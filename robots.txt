@@ -1,0 +1,5 @@
+# robots.txt — Doodle Desk Store
+User-agent: *
+Allow: /
+
+Sitemap: https://www.writeright-stationery.com/sitemap.xml

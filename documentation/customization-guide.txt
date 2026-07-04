@@ -1,0 +1,108 @@
+Doodle Desk — Customization Guide
+=================================================
+Assignment 08 — Static HTML Website
+
+COLORS (CSS Variables)
+------------------------
+Edit assets/css/style.css :root block:
+
+  --color-primary   : #1565C0   (Bright Blue — buttons, links, accents)
+  --color-secondary : #FFD600   (Yellow — CTAs, hover highlights)
+  --color-bg        : #FFFFFF   (Page background)
+  --color-text      : #2D2D2D   (Body text)
+  --color-section   : #F4F6F8   (Alternate section background)
+
+Dark mode overrides are in assets/css/dark-mode.css.
+Change [data-theme="dark"] variables to adjust dark palette.
+
+FONTS
+-----
+Headings: Quicksand (Google Fonts)
+Body: Source Sans Pro (Google Fonts)
+
+To change fonts:
+1. Update Google Fonts link in each HTML page <head>
+2. Update --font-heading and --font-body in style.css
+
+LOGO & BRAND NAME
+-----------------
+Replace "Doodle Desk" in:
+- Navbar .navbar-brand (all pages)
+- Footer h5 (all pages)
+- index.html JSON-LD schema
+- README.md and documentation
+
+IMAGES
+------
+Place WebP images in assets/images/
+Recommended: run python assets/images/generate_images.py for placeholders
+Replace with your own WebP files keeping the same filenames, or update
+src attributes in HTML files.
+
+Replace brand logos in assets/images/brand-*.webp
+
+NAVIGATION
+----------
+Edit navbar links in each page's <nav> section, or use find-and-replace
+across pages/ folder for consistency.
+
+Add/remove nav items in NAV structure; update sitemap.xml accordingly.
+
+FORMS
+-----
+Contact (contact.html):
+  action="https://formspree.io/f/YOUR_FORM_ID"
+
+Bulk Orders (bulk-orders.html):
+  action="https://formspree.io/f/YOUR_FORM_ID"
+
+Newsletter (index.html, coming-soon.html):
+  action="https://YOUR-MAILCHIMP-URL.list-manage.com/subscribe/post?u=XXXX&id=XXXX"
+
+Form validation is handled by assets/js/main.js (.needs-validation class).
+
+DARK MODE & RTL
+---------------
+Toggle buttons use classes .theme-toggle and .rtl-toggle
+Preferences saved in localStorage:
+  - stationery-theme (light/dark)
+  - stationery-dir (ltr/rtl)
+
+RTL styles: assets/css/rtl.css
+Activated when dir="rtl" on <html> element.
+
+BUNDLE CALCULATOR
+-----------------
+Edit bundles.html checkbox items:
+  class="bundle-item-checkbox"
+  data-price="X.XX"
+
+Total displays in #bundleTotal element.
+Logic in main.js initBundleCalculator().
+
+PRODUCT DETAILS
+---------------
+Update product-details.html for your featured product.
+Quantity picker IDs: qtyMinus, qtyPlus, qtyInput
+
+SEO
+---
+Each page: unique <title> and <meta name="description">
+index.html: JSON-LD Store schema
+Update sitemap.xml and robots.txt with your domain.
+
+RESPONSIVE BREAKPOINTS
+----------------------
+Mobile:  max-width 640px  (style.css @media)
+Tablet:  max-width 1024px
+Desktop: 1024px–1280px
+Large:   above 1280px
+
+HOVER EFFECTS
+-------------
+All transitions use: transition: all 0.3s ease
+Card lift: translateY(-6px)
+Button scale: scale(1.02)
+Image zoom: scale(1.05) with overflow hidden on parent
+
+Mobile (<640px) reduces transform animations for performance.

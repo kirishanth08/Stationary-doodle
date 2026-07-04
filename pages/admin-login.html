@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Access Doodle Desk's professional admin panel to manage products, users, sales metrics, and customer invoices.">
+  <title>Admin Login | Doodle Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&family=Source+Sans+Pro:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dark-mode.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <link href="../assets/css/doodle-desk.css" rel="stylesheet">
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar navbar-expand-lg navbar-stationery sticky-top" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <span class="brand-mark" aria-hidden="true">DD</span>
+        <span class="brand-text">Doodle <span class="brand-accent">Desk</span></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="bundles.html">Bundles</a></li>
+          <li class="nav-item"><a class="nav-link" href="bulk-orders.html">Bulk Orders</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="navbar-actions">
+          <button class="btn-icon search-toggle" type="button" aria-label="Open search"><i class="fas fa-search"
+              aria-hidden="true"></i></button>
+          <a href="cart.html" class="btn-icon cart-btn" aria-label="Cart"><i class="fas fa-shopping-bag"
+              aria-hidden="true"></i><span class="cart-count">0</span></a>
+          <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button"><i class="fas fa-moon"
+              aria-hidden="true"></i><i class="fas fa-sun" aria-hidden="true"></i></button>
+          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><i class="fas fa-language"
+              aria-hidden="true"></i></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main id="main-content">
+    <section class="page-header" aria-labelledby="page-heading">
+      <div class="container">
+        <h1 id="page-heading">Admin Portal</h1>
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Admin Login</li>
+          </ol>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section-padding">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-6 col-lg-5">
+            <div class="card card-stationery p-4 shadow-sm border-0 rounded-4">
+              <div class="text-center mb-4">
+                <h2 class="h4 fw-bold mb-1">Admin Sign In</h2>
+                <p class="text-muted small">Manage items, view users, and check orders.</p>
+              </div>
+
+              <!-- Alert messages -->
+              <div id="adminAlert" class="mb-3" style="display:none;"></div>
+
+              <form id="adminLoginForm" class="form-stationery needs-validation" novalidate>
+                <div class="mb-3">
+                  <label for="adminEmail" class="form-label">Admin Email</label>
+                  <input type="email" class="form-control" id="adminEmail" required placeholder="admin@doodledesk.com">
+                  <div class="invalid-feedback">Please enter a valid email address.</div>
+                </div>
+
+                <div class="mb-4">
+                  <label for="adminPassword" class="form-label">Password</label>
+                  <div class="input-group">
+                    <input type="password" class="form-control" id="adminPassword" required
+                      placeholder="Enter password">
+                    <button class="btn btn-outline-secondary" type="button" id="toggleAdminPasswordBtn"
+                      aria-label="Toggle password visibility">
+                      <i class="far fa-eye" aria-hidden="true"></i>
+                    </button>
+                    <div class="invalid-feedback">Password is required.</div>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary-custom w-100 py-2.5 rounded-3 mb-3"><i
+                    class="fas fa-lock me-2"></i>Sign In As Admin</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer-stationery" aria-label="Site footer">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <h5 class="footer-brand"><span class="brand-mark me-2" aria-hidden="true">DD</span> Doodle Desk</h5>
+          <p>Professional admin panel login dashboard.</p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Doodle Desk. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Dynamic Search Modal -->
+  <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <form role="search" action="products.html">
+            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/products.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/validation.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/admin.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/search.js"></script>
+  <script src="../js/navbar.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Redirect if already logged in
+      if (window.DoodleAdmin.getCurrentAdmin()) {
+        window.location.href = 'admin-dashboard.html';
+      }
+
+      // Setup validations
+      window.DoodleValidation.setupRealTimeValidation('#adminLoginForm', {
+        adminEmail: { required: true, email: true },
+        adminPassword: { required: true }
+      });
+
+      // Show/Hide password toggle
+      const toggleBtn = document.getElementById('toggleAdminPasswordBtn');
+      const passInput = document.getElementById('adminPassword');
+      if (toggleBtn && passInput) {
+        toggleBtn.addEventListener('click', () => {
+          input_toggle();
+        });
+        function input_toggle() {
+          const type = passInput.type === 'password' ? 'text' : 'password';
+          passInput.type = type;
+          toggleBtn.querySelector('i').classList.toggle('fa-eye');
+          toggleBtn.querySelector('i').classList.toggle('fa-eye-slash');
+        }
+      }
+
+      // Submit Form
+      const form = document.getElementById('adminLoginForm');
+      const alertBox = document.getElementById('adminAlert');
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) return;
+
+        const email = document.getElementById('adminEmail').value;
+        const pass = document.getElementById('adminPassword').value;
+
+        const res = window.DoodleAdmin.login(email, pass);
+
+        if (res.success) {
+          alertBox.className = 'alert alert-success';
+          alertBox.style.display = 'block';
+          alertBox.innerHTML = `<i class="fas fa-check-circle me-2"></i>${res.message}`;
+          setTimeout(() => {
+            window.location.href = "admin-dashboard.html";
+          }, 1000);
+        } else {
+          alertBox.className = 'alert alert-danger';
+          alertBox.style.display = 'block';
+          alertBox.innerHTML = `<i class="fas fa-times-circle me-2"></i>${res.message}`;
+        }
+      });
+    });
+  </script>
+</body>
+
+</html>

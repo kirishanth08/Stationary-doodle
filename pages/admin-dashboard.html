@@ -1,0 +1,1077 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Manage inventory, process purchases, and view customer registrations using the Doodle Desk Admin Panel.">
+  <title>Admin Dashboard | Doodle Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dark-mode.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <link href="../assets/css/doodle-desk.css" rel="stylesheet">
+  <style>
+    body.admin-console {
+      background:
+        linear-gradient(180deg, rgba(var(--color-primary-rgb), 0.06), transparent 320px),
+        var(--color-section);
+    }
+    .admin-console .page-header {
+      background:
+        linear-gradient(135deg, rgba(15, 76, 129, 0.96), rgba(26, 107, 181, 0.9)),
+        var(--color-primary);
+      padding: 3rem 0;
+    }
+    .admin-console .card-stationery {
+      border-top: 0;
+      border-radius: 14px;
+    }
+    .admin-card {
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      background: var(--color-card);
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      transition: var(--transition-smooth);
+    }
+    .admin-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-premium-sm);
+    }
+    .admin-card-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      background: rgba(var(--color-primary-rgb), 0.1);
+      color: var(--color-primary);
+    }
+    .admin-card-data h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.15rem;
+    }
+    .admin-card-data p {
+      margin-bottom: 0;
+      font-size: 0.85rem;
+      color: var(--color-text-muted);
+    }
+    .admin-nav {
+      display: flex;
+      gap: 0.5rem;
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      padding: 0.35rem;
+      margin-bottom: 1.5rem;
+      background: rgba(var(--color-primary-rgb), 0.04);
+    }
+    .admin-nav-link {
+      padding: 0.75rem 1rem;
+      color: var(--color-text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 10px;
+      border-bottom: 0;
+      transition: var(--transition-smooth);
+    }
+    .admin-nav-link:hover, .admin-nav-link.active {
+      background: var(--color-card);
+      color: var(--color-primary);
+      box-shadow: var(--shadow-sm);
+    }
+    .admin-tab-pane {
+      display: none;
+    }
+    .admin-tab-pane.active {
+      display: block;
+      animation: fadeIn 0.4s ease;
+    }
+    .product-thumb-sm {
+      width: 45px;
+      height: 45px;
+      border-radius: 6px;
+      object-fit: cover;
+      background: var(--color-section);
+    }
+    .admin-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+    .admin-mini-panel {
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      background: var(--color-card);
+      padding: 1rem;
+      height: 100%;
+    }
+    .admin-mini-panel h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+    }
+    .activity-feed {
+      display: grid;
+      gap: 0.75rem;
+      max-height: 340px;
+      overflow: auto;
+    }
+    .activity-item {
+      border-left: 3px solid var(--color-primary);
+      background: rgba(var(--color-primary-rgb), 0.04);
+      border-radius: 8px;
+      padding: 0.7rem 0.85rem;
+    }
+    .activity-item p {
+      margin-bottom: 0.15rem;
+      font-size: 0.9rem;
+    }
+    .admin-table-actions {
+      display: inline-flex;
+      gap: 0.35rem;
+      align-items: center;
+    }
+    .admin-chart {
+      display: grid;
+      gap: 0.65rem;
+    }
+    .admin-chart-row {
+      display: grid;
+      grid-template-columns: minmax(96px, 150px) 1fr auto;
+      gap: 0.75rem;
+      align-items: center;
+      font-size: 0.88rem;
+    }
+    .admin-chart-track {
+      height: 12px;
+      border-radius: 999px;
+      background: rgba(var(--color-primary-rgb), 0.08);
+      overflow: hidden;
+    }
+    .admin-chart-bar {
+      display: block;
+      height: 100%;
+      min-width: 4px;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+    }
+    .admin-profile-avatar {
+      width: 76px;
+      height: 76px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(var(--color-primary-rgb), 0.1);
+      color: var(--color-primary);
+      font-size: 2rem;
+    }
+    .admin-search-results {
+      display: grid;
+      gap: 0.65rem;
+      max-height: 420px;
+      overflow: auto;
+    }
+    .admin-search-result {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 0.85rem 1rem;
+      background: var(--color-card);
+      color: var(--color-text);
+    }
+    .admin-search-result strong {
+      display: block;
+      color: var(--color-text);
+    }
+    .admin-search-result span {
+      color: var(--color-text-muted);
+      font-size: 0.84rem;
+    }
+    .admin-compact-mode .table > :not(caption) > * > * {
+      padding: 0.45rem 0.55rem;
+      font-size: 0.86rem;
+    }
+    @media (max-width: 991.98px) {
+      .admin-nav {
+        overflow-x: auto;
+        padding-bottom: 0.25rem;
+      }
+      .admin-nav-link {
+        white-space: nowrap;
+      }
+      .admin-chart-row {
+        grid-template-columns: minmax(80px, 110px) 1fr;
+      }
+      .admin-chart-row strong {
+        grid-column: 2;
+      }
+    }
+  </style>
+</head>
+<body class="admin-console">
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar navbar-expand-lg navbar-stationery sticky-top" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <span class="brand-mark" aria-hidden="true">DD</span>
+        <span class="brand-text">Doodle <span class="brand-accent">Desk</span></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="bundles.html">Bundles</a></li>
+          <li class="nav-item"><a class="nav-link" href="bulk-orders.html">Bulk Orders</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="navbar-actions">
+          <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button"><i class="fas fa-moon" aria-hidden="true"></i><i class="fas fa-sun" aria-hidden="true"></i></button>
+          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><i class="fas fa-language" aria-hidden="true"></i></button>
+          <button class="btn btn-outline-danger btn-sm" id="adminLogoutBtn"><i class="fas fa-sign-out-alt me-1"></i>Logout</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main id="main-content">
+    <section class="page-header" aria-labelledby="page-heading">
+      <div class="container">
+        <div class="d-flex flex-wrap justify-content-between align-items-center">
+          <div>
+            <h1 id="page-heading">Admin Management Console</h1>
+            <p class="text-white-50 mb-0">Welcome, <span id="adminNameDisplay" class="fw-bold">Super Admin</span></p>
+          </div>
+          <div>
+            <button class="btn btn-secondary-custom" id="openAddProductModalBtn" type="button"><i class="fas fa-plus me-2"></i>Add New Product</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats Cards -->
+    <section class="py-4">
+      <div class="container">
+        <div class="row g-3">
+          <div class="col-6 col-lg-3">
+            <div class="admin-card">
+              <div class="admin-card-icon"><i class="fas fa-boxes"></i></div>
+              <div class="admin-card-data">
+                <h3 id="statTotalProducts">0</h3>
+                <p>Total Products</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="admin-card">
+              <div class="admin-card-icon"><i class="fas fa-users"></i></div>
+              <div class="admin-card-data">
+                <h3 id="statTotalUsers">0</h3>
+                <p>Total Users</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="admin-card">
+              <div class="admin-card-icon"><i class="fas fa-shopping-cart"></i></div>
+              <div class="admin-card-data">
+                <h3 id="statTotalOrders">0</h3>
+                <p>Total Orders</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="admin-card text-success">
+              <div class="admin-card-icon text-success" style="background: rgba(40, 167, 69, 0.1);"><i class="fas fa-dollar-sign"></i></div>
+              <div class="admin-card-data">
+                <h3 id="statRevenue">$0.00</h3>
+                <p>Revenue</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-padding pt-0">
+      <div class="container">
+        <div class="card card-stationery p-4 shadow-sm border-0 rounded-4">
+          
+          <!-- Nav Tabs -->
+          <div class="admin-nav" role="tablist">
+            <a href="admin-dashboard.html" class="admin-nav-link active" data-tab="overview" role="tab" aria-selected="true">Overview</a>
+            <a href="admin-profile.html" class="admin-nav-link" data-tab="profile" role="tab" aria-selected="false">Profile</a>
+            <a href="admin-products.html" class="admin-nav-link" data-tab="products" role="tab" aria-selected="false">Products</a>
+            <a href="admin-users.html" class="admin-nav-link" data-tab="users" role="tab" aria-selected="false">Users</a>
+            <a href="admin-orders.html" class="admin-nav-link" data-tab="orders" role="tab" aria-selected="false">Orders</a>
+            <a href="admin-reports.html" class="admin-nav-link" data-tab="reports" role="tab" aria-selected="false">Reports</a>
+            <a href="admin-settings.html" class="admin-nav-link" data-tab="settings" role="tab" aria-selected="false">Settings</a>
+          </div>
+
+          <!-- Alert Container -->
+          <div id="adminDashAlert" class="mb-3" style="display:none;"></div>
+
+          <!-- Tab Pane: Overview -->
+          <div class="admin-tab-pane active" id="tab-overview">
+            <div class="row g-3">
+              <div class="col-lg-4">
+                <div class="admin-mini-panel">
+                  <h3><i class="fas fa-triangle-exclamation me-2 text-warning"></i>Low Stock Watch</h3>
+                  <div id="lowStockList" class="small"></div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="admin-mini-panel">
+                  <h3><i class="fas fa-ranking-star me-2 text-primary"></i>Top Customers</h3>
+                  <div id="topCustomersList" class="small"></div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="admin-mini-panel">
+                  <h3><i class="fas fa-clock-rotate-left me-2 text-success"></i>Recent Orders</h3>
+                  <div id="recentOrdersList" class="small"></div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="row g-3">
+                  <div class="col-lg-6">
+                    <div class="admin-mini-panel">
+                      <h3><i class="fas fa-chart-column me-2 text-primary"></i>Revenue by Status</h3>
+                      <div id="statusRevenueChart" class="admin-chart"></div>
+                    </div>
+                  </div>
+                  <div class="col-lg-6">
+                    <div class="admin-mini-panel">
+                      <h3><i class="fas fa-layer-group me-2 text-success"></i>Products by Category</h3>
+                      <div id="categoryProductChart" class="admin-chart"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="admin-mini-panel">
+                  <div class="admin-toolbar mb-2">
+                    <h3 class="mb-0"><i class="fas fa-clipboard-list me-2"></i>Admin Activity</h3>
+                    <button class="btn btn-outline-custom btn-sm" id="clearActivityBtn" type="button">Clear Log</button>
+                  </div>
+                  <div id="activityFeed" class="activity-feed"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane: Profile -->
+          <div class="admin-tab-pane" id="tab-profile">
+            <div class="row g-3">
+              <div class="col-lg-4">
+                <div class="admin-mini-panel text-center">
+                  <div class="admin-profile-avatar mb-3"><i class="fas fa-user-shield"></i></div>
+                  <h3 id="profileCardName">Super Admin</h3>
+                  <p class="small text-muted mb-1" id="profileCardEmail">admin@doodledesk.com</p>
+                  <p class="small mb-0"><span class="badge bg-success">Active Admin</span></p>
+                </div>
+              </div>
+              <div class="col-lg-8">
+                <div class="admin-mini-panel">
+                  <h3><i class="fas fa-id-card me-2"></i>Profile Details</h3>
+                  <form id="adminProfileForm" class="form-stationery">
+                    <div class="row g-3">
+                      <div class="col-md-6">
+                        <label class="form-label" for="adminProfileName">Full Name</label>
+                        <input class="form-control" id="adminProfileName" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="adminProfileEmail">Email</label>
+                        <input class="form-control" id="adminProfileEmail" type="email" required>
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="adminProfileRole">Role</label>
+                        <input class="form-control" id="adminProfileRole" value="Store Manager">
+                      </div>
+                      <div class="col-md-6">
+                        <label class="form-label" for="adminProfilePhone">Phone</label>
+                        <input class="form-control" id="adminProfilePhone" placeholder="Optional">
+                      </div>
+                    </div>
+                    <button class="btn btn-primary-custom mt-3" type="submit">Save Profile</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane: Products -->
+          <div class="admin-tab-pane" id="tab-products">
+            <div class="admin-toolbar">
+              <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-outline-custom btn-sm" id="exportProductsBtn" type="button"><i class="fas fa-file-export me-1"></i>Export Products</button>
+                <button class="btn btn-outline-custom btn-sm" id="lowStockOnlyBtn" type="button"><i class="fas fa-box-open me-1"></i>Low Stock Only</button>
+              </div>
+              <span class="small text-muted" id="productsCountLabel">Showing products</span>
+            </div>
+            <div class="row g-3 mb-4">
+              <div class="col-md-6 col-lg-4">
+                <div class="input-group">
+                  <span class="input-group-text"><i class="fas fa-search"></i></span>
+                  <input type="text" class="form-control" id="productSearch" placeholder="Search by name, brand...">
+                </div>
+              </div>
+              <div class="col-md-6 col-lg-3">
+                <select class="form-select" id="productCategoryFilter" aria-label="Category filter">
+                  <option value="">All Categories</option>
+                  <option value="Writing Supplies">Writing Supplies</option>
+                  <option value="Notebooks & Journals">Notebooks & Journals</option>
+                  <option value="Art & Craft">Art & Craft</option>
+                  <option value="School Essentials">School Essentials</option>
+                  <option value="Office Supplies">Office Supplies</option>
+                  <option value="Study Tools">Study Tools</option>
+                  <option value="Gift Collections">Gift Collections</option>
+                </select>
+              </div>
+              <div class="col-md-6 col-lg-3">
+                <select class="form-select" id="productSortFilter" aria-label="Sort products">
+                  <option value="name-asc">Name A-Z</option>
+                  <option value="stock-asc">Stock Low First</option>
+                  <option value="price-desc">Price High First</option>
+                  <option value="rating-desc">Rating High First</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="table align-middle text-nowrap">
+                <thead>
+                  <tr>
+                    <th scope="col">Thumbnail</th>
+                    <th scope="col">Product ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Category</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminProductsTableBody">
+                  <!-- Dynamic Products rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tab Pane: Users -->
+          <div class="admin-tab-pane" id="tab-users">
+            <div class="admin-toolbar">
+              <div class="input-group" style="max-width: 360px;">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input type="text" class="form-control" id="userSearch" placeholder="Search customers...">
+              </div>
+              <button class="btn btn-outline-custom btn-sm" id="exportUsersBtn" type="button"><i class="fas fa-file-export me-1"></i>Export Users</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle text-nowrap">
+                <thead>
+                  <tr>
+                    <th scope="col">Customer Name</th>
+                    <th scope="col">Email Address</th>
+                    <th scope="col">Mobile Number</th>
+                    <th scope="col">Saved Address</th>
+                    <th scope="col">Total Orders</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminUsersTableBody">
+                  <!-- Dynamic Users rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tab Pane: Orders -->
+          <div class="admin-tab-pane" id="tab-orders">
+            <div class="admin-toolbar">
+              <div class="d-flex flex-wrap gap-2">
+                <div class="input-group" style="max-width: 320px;">
+                  <span class="input-group-text"><i class="fas fa-search"></i></span>
+                  <input type="text" class="form-control" id="orderSearch" placeholder="Search orders...">
+                </div>
+                <select class="form-select" id="orderStatusFilter" aria-label="Order status filter" style="max-width: 180px;">
+                  <option value="">All Statuses</option>
+                  <option value="Processing">Processing</option>
+                  <option value="Shipped">Shipped</option>
+                  <option value="Delivered">Delivered</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+              </div>
+              <button class="btn btn-outline-custom btn-sm" id="exportOrdersBtn" type="button"><i class="fas fa-file-export me-1"></i>Export Orders</button>
+            </div>
+            <div class="table-responsive">
+              <table class="table align-middle text-nowrap">
+                <thead>
+                  <tr>
+                    <th scope="col">Order ID</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Purchased Items</th>
+                    <th scope="col">Total Amount</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="adminOrdersTableBody">
+                  <!-- Dynamic Orders rows -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Tab Pane: Reports -->
+          <div class="admin-tab-pane" id="tab-reports">
+            <div class="admin-toolbar">
+              <div>
+                <h3 class="h5 mb-1">Reports Dashboard</h3>
+                <p class="small text-muted mb-0">Sales, inventory, and customer summaries from local store data.</p>
+              </div>
+              <button class="btn btn-outline-custom btn-sm" id="exportReportBtn" type="button"><i class="fas fa-file-export me-1"></i>Export Report</button>
+            </div>
+            <div class="row g-3 mb-3">
+              <div class="col-md-4">
+                <div class="admin-mini-panel">
+                  <h3>Average Order Value</h3>
+                  <p class="h4 mb-0" id="reportAov">$0.00</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="admin-mini-panel">
+                  <h3>Pending Orders</h3>
+                  <p class="h4 mb-0" id="reportPendingOrders">0</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="admin-mini-panel">
+                  <h3>Low Stock SKUs</h3>
+                  <p class="h4 mb-0" id="reportLowStock">0</p>
+                </div>
+              </div>
+            </div>
+            <div class="row g-3">
+              <div class="col-lg-6">
+                <div class="admin-mini-panel">
+                  <h3><i class="fas fa-chart-simple me-2"></i>Revenue by Status</h3>
+                  <div id="reportStatusChart" class="admin-chart"></div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="admin-mini-panel">
+                  <h3><i class="fas fa-boxes-stacked me-2"></i>Inventory by Category</h3>
+                  <div id="reportCategoryChart" class="admin-chart"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Pane: Settings -->
+          <div class="admin-tab-pane" id="tab-settings">
+            <div class="row g-3">
+              <div class="col-lg-6">
+                <div class="admin-mini-panel">
+                  <h3><i class="fas fa-database me-2"></i>Data Tools</h3>
+                  <p class="small text-muted">Export local demo data or reset the dashboard back to seeded demo content.</p>
+                  <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-outline-custom btn-sm" id="exportAllDataBtn" type="button">Export All Data</button>
+                    <button class="btn btn-outline-danger btn-sm" id="resetDemoDataBtn" type="button">Reset Demo Data</button>
+                    <button class="btn btn-outline-danger btn-sm" id="clearLocalSessionsBtn" type="button">Clear Sessions</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-6">
+                <div class="admin-mini-panel">
+                  <h3><i class="fas fa-user-shield me-2"></i>Admin Account</h3>
+                  <p class="small mb-1"><strong>Demo email:</strong> <code>admin@doodledesk.com</code></p>
+                  <p class="small mb-0"><strong>Demo password:</strong> <code>AdminPassword123</code></p>
+                  <hr>
+                  <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="compactAdminMode">
+                    <label class="form-check-label small" for="compactAdminMode">Compact table mode</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== ADD / EDIT PRODUCT MODAL ========== -->
+  <div class="modal fade" id="productFormModal" tabindex="-1" aria-labelledby="productFormModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content card-stationery border-0 p-3">
+        <div class="modal-header border-0 pb-0">
+          <h2 class="modal-title h5 fw-bold" id="productFormModalLabel">Add New Product</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="productForm" class="form-stationery needs-validation" novalidate>
+          <div class="modal-body py-3">
+            <input type="hidden" id="editOriginalId">
+            
+            <div class="mb-3">
+              <label for="prodId" class="form-label small">Product Unique ID</label>
+              <input type="text" class="form-control form-control-sm" id="prodId" required placeholder="e.g. pilot-gel-pens">
+              <div class="invalid-feedback">A unique ID is required.</div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="prodName" class="form-label small">Product Name</label>
+              <input type="text" class="form-control form-control-sm" id="prodName" required placeholder="e.g. Pilot G2 Gel Pens">
+              <div class="invalid-feedback">Product name is required.</div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-md-6">
+                <label for="prodCategory" class="form-label small">Category</label>
+                <select class="form-select form-select-sm" id="prodCategory" required>
+                  <option value="">Choose category</option>
+                  <option value="Writing Supplies">Writing Supplies</option>
+                  <option value="Notebooks & Journals">Notebooks & Journals</option>
+                  <option value="Art & Craft">Art & Craft</option>
+                  <option value="School Essentials">School Essentials</option>
+                  <option value="Office Supplies">Office Supplies</option>
+                  <option value="Study Tools">Study Tools</option>
+                  <option value="Gift Collections">Gift Collections</option>
+                </select>
+                <div class="invalid-feedback">Choose a category.</div>
+              </div>
+              <div class="col-md-6">
+                <label for="prodBrand" class="form-label small">Brand</label>
+                <input type="text" class="form-control form-control-sm" id="prodBrand" required placeholder="e.g. Pilot">
+                <div class="invalid-feedback">Brand is required.</div>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-md-4">
+                <label for="prodPrice" class="form-label small">Price ($)</label>
+                <input type="number" step="0.01" class="form-control form-control-sm" id="prodPrice" required placeholder="12.99">
+                <div class="invalid-feedback">Provide a price.</div>
+              </div>
+              <div class="col-md-4">
+                <label for="prodOldPrice" class="form-label small">Old Price ($)</label>
+                <input type="number" step="0.01" class="form-control form-control-sm" id="prodOldPrice" placeholder="Optional">
+              </div>
+              <div class="col-md-4">
+                <label for="prodStock" class="form-label small">Stock Count</label>
+                <input type="number" class="form-control form-control-sm" id="prodStock" required placeholder="10">
+                <div class="invalid-feedback">Provide stock count.</div>
+              </div>
+            </div>
+
+            <div class="row g-2 mb-3">
+              <div class="col-md-6">
+                <label for="prodColor" class="form-label small">Color</label>
+                <input type="text" class="form-control form-control-sm" id="prodColor" placeholder="e.g. Blue">
+              </div>
+              <div class="col-md-6">
+                <label for="prodRating" class="form-label small">Rating (0-5)</label>
+                <input type="number" step="0.1" min="0" max="5" class="form-control form-control-sm" id="prodRating" value="4.5" required>
+                <div class="invalid-feedback">Provide rating (0.0 to 5.0).</div>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="prodImage" class="form-label small">Image Resource Path</label>
+              <select class="form-select form-select-sm" id="prodImage" required>
+                <option value="../assets/images/unsplash_48213b4e03441d49d10b4016e31be545.webp">Writing supplies pen set (Pilot G2 Image)</option>
+                <option value="../assets/images/unsplash_b674419c2dcc92660df1bfd0a8c9d724.webp">Notebook cover image</option>
+                <option value="../assets/images/unsplash_02b2c8ba4aa1a5d2cf30747d7212aa89.webp">Campus notebook stack</option>
+                <option value="../assets/images/unsplash_bde515ec3bf4b29b822f5aeb864b3b60.webp">Color pencils & school items</option>
+                <option value="../assets/images/unsplash_5446f9a3b12484de4b44b95501b21170.webp">Sketchbook painting scene</option>
+                <option value="../assets/images/unsplash_1d6758a26a88fa7377c79f4828177cd8.webp">Colored fineliners markers</option>
+                <option value="../assets/images/unsplash_4a43eee4cd6d4e537b99b1f7d3ddd46d.webp">Office layout / folder setup</option>
+                <option value="../assets/images/unsplash_bee477d38dbec8cf9ab15e233db88d6a.webp">Calculator layout setup</option>
+              </select>
+            </div>
+
+            <div class="mb-0">
+              <label for="prodDesc" class="form-label small">Description</label>
+              <textarea class="form-control form-control-sm" id="prodDesc" rows="3" required placeholder="Write a short description details of item..."></textarea>
+              <div class="invalid-feedback">Description is required.</div>
+            </div>
+          </div>
+          <div class="modal-footer border-0 pt-0">
+            <button type="button" class="btn btn-outline-custom" data-bs-dismiss="modal">Cancel</button>
+            <button type="submit" class="btn btn-primary-custom" id="submitProductBtn">Save Product</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer-stationery"><div class="container"><div class="footer-bottom"><p>&copy; 2026 Doodle Desk. All rights reserved.</p></div></div></footer>
+
+  <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-labelledby="adminSearchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <h2 class="modal-title h5" id="adminSearchModalLabel">Search Admin Console</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form role="search" id="adminGlobalSearchForm">
+            <label class="visually-hidden" for="adminGlobalSearch">Search admin data</label>
+            <input type="search" class="form-control form-control-lg" id="adminGlobalSearch" placeholder="Search products, users, orders..." autocomplete="off">
+          </form>
+          <div id="adminSearchResults" class="admin-search-results mt-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/products.js"></script>
+  <script src="../js/theme.js"></script>
+  <script src="../js/validation.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/admin.js"></script>
+  <script src="../js/cart.js"></script>
+  <script src="../js/search.js"></script>
+  <script src="../js/navbar.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Protection & Welcome
+      const currentAdmin = window.DoodleAdmin.getCurrentAdmin();
+      if (!currentAdmin) {
+        window.location.href = 'admin-login.html';
+        return;
+      }
+      document.getElementById('adminNameDisplay').textContent = currentAdmin.name;
+
+      // Logout handler
+      document.getElementById('adminLogoutBtn')?.addEventListener('click', () => {
+        window.DoodleAdmin.logout();
+      });
+
+      // 2. Tab Navigation
+      const tabLinks = document.querySelectorAll('.admin-nav-link');
+      const tabPanes = document.querySelectorAll('.admin-tab-pane');
+      tabLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          const target = link.dataset.tab;
+          
+          tabLinks.forEach(l => l.classList.remove('active'));
+      tabPanes.forEach(p => p.classList.remove('active'));
+          
+          const href = link.getAttribute('href');
+          if (href && href !== '#') {
+            window.location.href = href;
+            return;
+          }
+
+          link.classList.add('active');
+          document.getElementById(`tab-${target}`).classList.add('active');
+        });
+      });
+
+      // 3. Stats & Counters
+      const updateStats = () => {
+        const stats = window.DoodleAdmin.getDashboardStats();
+        document.getElementById('statTotalProducts').textContent = stats.totalProducts;
+        document.getElementById('statTotalUsers').textContent = stats.totalUsers;
+        document.getElementById('statTotalOrders').textContent = stats.totalOrders;
+        document.getElementById('statRevenue').textContent = `$${stats.revenue.toFixed(2)}`;
+      };
+
+      // 4. Products Table Render
+      const renderProducts = () => {
+        const products = window.DoodleStore.getProducts();
+        const tbody = document.getElementById('adminProductsTableBody');
+        const filterVal = document.getElementById('productCategoryFilter').value;
+        const searchVal = document.getElementById('productSearch').value.toLowerCase().trim();
+
+        let filtered = products.filter(p => {
+          if (filterVal && p.category !== filterVal) return false;
+          if (searchVal) {
+            const matchesName = p.name.toLowerCase().includes(searchVal);
+            const matchesBrand = p.brand && p.brand.toLowerCase().includes(searchVal);
+            const matchesId = p.id.toLowerCase().includes(searchVal);
+            if (!matchesName && !matchesBrand && !matchesId) return false;
+          }
+          return true;
+        });
+
+        tbody.innerHTML = filtered.map(p => `
+          <tr data-id="${p.id}">
+            <td><img src="${p.image}" alt="${p.name}" class="product-thumb-sm"></td>
+            <td><code class="small">${p.id}</code></td>
+            <td style="white-space: normal;"><span class="fw-semibold">${p.name}</span></td>
+            <td>${p.category}</td>
+            <td>$${p.price.toFixed(2)}</td>
+            <td>
+              <span class="badge bg-${p.stock > 5 ? 'success' : p.stock > 0 ? 'warning' : 'danger'}">
+                ${p.stock} units
+              </span>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary me-1 edit-prod-btn" data-id="${p.id}"><i class="fas fa-edit"></i></button>
+              <button class="btn btn-sm btn-outline-danger delete-prod-btn" data-id="${p.id}"><i class="fas fa-trash-alt"></i></button>
+            </td>
+          </tr>
+        `).join('');
+
+        // Bind Row Buttons
+        tbody.querySelectorAll('.edit-prod-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            openProductModal(id);
+          });
+        });
+
+        tbody.querySelectorAll('.delete-prod-btn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const id = btn.dataset.id;
+            if (confirm(`Are you sure you want to delete product "${id}"?`)) {
+              window.DoodleStore.deleteProduct(id);
+              showAdminAlert(`Product "${id}" deleted successfully.`, 'warning');
+              renderProducts();
+              updateStats();
+            }
+          });
+        });
+      };
+
+      // 5. Users List Render
+      const renderUsers = () => {
+        const users = window.DoodleAuth.getUsers();
+        const tbody = document.getElementById('adminUsersTableBody');
+        tbody.innerHTML = users.map(u => `
+          <tr>
+            <td><span class="fw-bold">${u.name}</span></td>
+            <td><code>${u.email}</code></td>
+            <td>${u.phone || 'N/A'}</td>
+            <td style="white-space: normal;"><p class="small mb-0 text-muted">${u.address || 'No saved address'}</p></td>
+            <td><span class="badge bg-secondary">${u.orders ? u.orders.length : 0} orders</span></td>
+          </tr>
+        `).join('');
+      };
+
+      // 6. Orders List Render
+      const renderOrders = () => {
+        const orders = window.DoodleAdmin.getOrders();
+        const tbody = document.getElementById('adminOrdersTableBody');
+        tbody.innerHTML = orders.map(o => `
+          <tr>
+            <td><span class="fw-bold">${o.id}</span></td>
+            <td>
+              <div class="small">
+                <strong>${o.userName}</strong><br>
+                <code>${o.userEmail}</code>
+              </div>
+            </td>
+            <td>${o.date}</td>
+            <td style="white-space: normal;">
+              <ul class="list-unstyled mb-0 small">
+                ${o.items.map(item => `<li>${item.name} <span class="text-muted">x${item.quantity}</span></li>`).join('')}
+              </ul>
+            </td>
+            <td><strong class="text-success">$${parseFloat(o.total).toFixed(2)}</strong></td>
+            <td>
+              <span class="badge bg-${o.status === 'Delivered' ? 'success' : o.status === 'Shipped' ? 'info' : 'warning'}">
+                ${o.status}
+              </span>
+            </td>
+            <td>
+              <select class="form-select form-select-sm w-auto order-status-select" data-id="${o.id}">
+                <option value="Processing" ${o.status === 'Processing' ? 'selected' : ''}>Processing</option>
+                <option value="Shipped" ${o.status === 'Shipped' ? 'selected' : ''}>Shipped</option>
+                <option value="Delivered" ${o.status === 'Delivered' ? 'selected' : ''}>Delivered</option>
+              </select>
+            </td>
+          </tr>
+        `).join('');
+
+        tbody.querySelectorAll('.order-status-select').forEach(sel => {
+          sel.addEventListener('change', () => {
+            const id = sel.dataset.id;
+            const newStatus = sel.value;
+            const ordersList = window.DoodleAdmin.getOrders();
+            const order = ordersList.find(o => o.id === id);
+            if (order) {
+              order.status = newStatus;
+              window.DoodleAdmin.saveOrders(ordersList);
+              
+              // Also update status in user orders list
+              const users = window.DoodleAuth.getUsers();
+              users.forEach(u => {
+                if (u.orders) {
+                  const oIdx = u.orders.findIndex(ord => ord.id === id);
+                  if (oIdx > -1) {
+                    u.orders[oIdx].status = newStatus;
+                  }
+                }
+              });
+              window.DoodleAuth.saveUsers(users);
+              
+              showAdminAlert(`Order ${id} status updated to "${newStatus}".`, 'success');
+              renderOrders();
+              updateStats();
+            }
+          });
+        });
+      };
+
+      // 7. Add & Edit Product Modal Logic
+      const modalEl = document.getElementById('productFormModal');
+      const modal = (typeof bootstrap !== 'undefined' && bootstrap.Modal)
+        ? new bootstrap.Modal(modalEl)
+        : {
+            show() {
+              modalEl.style.display = 'block';
+              modalEl.classList.add('show');
+              modalEl.removeAttribute('aria-hidden');
+              document.body.classList.add('modal-open');
+            },
+            hide() {
+              modalEl.style.display = 'none';
+              modalEl.classList.remove('show');
+              modalEl.setAttribute('aria-hidden', 'true');
+              document.body.classList.remove('modal-open');
+            }
+          };
+      const prodForm = document.getElementById('productForm');
+
+      window.DoodleValidation.setupRealTimeValidation('#productForm', {
+        prodId: { required: true },
+        prodName: { required: true },
+        prodCategory: { required: true },
+        prodBrand: { required: true },
+        prodPrice: { required: true },
+        prodStock: { required: true },
+        prodRating: { required: true },
+        prodDesc: { required: true }
+      });
+
+      const openProductModal = (id = null) => {
+        prodForm.reset();
+        prodForm.classList.remove('was-validated');
+        
+        if (id) {
+          // Edit state
+          document.getElementById('productFormModalLabel').textContent = 'Edit Product';
+          document.getElementById('prodId').readOnly = true;
+          document.getElementById('editOriginalId').value = id;
+          
+          const p = window.DoodleStore.getProductById(id);
+          if (p) {
+            document.getElementById('prodId').value = p.id;
+            document.getElementById('prodName').value = p.name;
+            document.getElementById('prodCategory').value = p.category;
+            document.getElementById('prodBrand').value = p.brand || '';
+            document.getElementById('prodPrice').value = p.price;
+            document.getElementById('prodOldPrice').value = p.oldPrice || '';
+            document.getElementById('prodStock').value = p.stock;
+            document.getElementById('prodColor').value = p.color || '';
+            document.getElementById('prodRating').value = p.rating;
+            document.getElementById('prodImage').value = p.image;
+            document.getElementById('prodDesc').value = p.description;
+          }
+        } else {
+          // Add state
+          document.getElementById('productFormModalLabel').textContent = 'Add New Product';
+          document.getElementById('prodId').readOnly = false;
+          document.getElementById('editOriginalId').value = '';
+        }
+        modal.show();
+      };
+
+      document.getElementById('openAddProductModalBtn').addEventListener('click', () => openProductModal());
+
+      prodForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (!prodForm.checkValidity()) return;
+
+        const id = document.getElementById('prodId').value.trim();
+        const editId = document.getElementById('editOriginalId').value;
+        const name = document.getElementById('prodName').value.trim();
+        const category = document.getElementById('prodCategory').value;
+        const brand = document.getElementById('prodBrand').value.trim();
+        const price = parseFloat(document.getElementById('prodPrice').value);
+        const oldPriceVal = document.getElementById('prodOldPrice').value;
+        const oldPrice = oldPriceVal ? parseFloat(oldPriceVal) : null;
+        const stock = parseInt(document.getElementById('prodStock').value, 10);
+        const color = document.getElementById('prodColor').value.trim() || 'Blue';
+        const rating = parseFloat(document.getElementById('prodRating').value);
+        const image = document.getElementById('prodImage').value;
+        const description = document.getElementById('prodDesc').value.trim();
+
+        const productData = {
+          id, name, category, price, oldPrice, rating, description, image, stock, brand, color
+        };
+
+        if (editId) {
+          // Update
+          window.DoodleStore.updateProduct(editId, productData);
+          showAdminAlert(`Product "${name}" updated successfully.`, 'success');
+        } else {
+          // Add (Check duplicates)
+          if (window.DoodleStore.getProductById(id)) {
+            alert('A product with this Unique ID already exists!');
+            return;
+          }
+          window.DoodleStore.addProduct(productData);
+          showAdminAlert(`Product "${name}" added successfully.`, 'success');
+        }
+
+        modal.hide();
+        renderProducts();
+        updateStats();
+      });
+
+      // 8. Filters & Search bindings
+      document.getElementById('productCategoryFilter').addEventListener('change', renderProducts);
+      document.getElementById('productSearch').addEventListener('input', renderProducts);
+
+      // Alert utility
+      const showAdminAlert = (msg, type = 'success') => {
+        const box = document.getElementById('adminDashAlert');
+        box.className = `alert alert-${type} alert-dismissible fade show`;
+        box.style.display = 'block';
+        box.innerHTML = `<i class="fas fa-info-circle me-2"></i>${msg}<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>`;
+      };
+
+      // 9. Initial Load
+      updateStats();
+      renderProducts();
+      renderUsers();
+      renderOrders();
+    });
+  </script>
+  <script src="../js/admin-dashboard.js"></script>
+</body>
+</html>
+
+
+

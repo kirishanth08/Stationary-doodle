@@ -1,0 +1,52 @@
+/**
+ * Doodle Desk — Shared HTML snippets & image URLs
+ * Unsplash royalty-free photography
+ */
+'use strict';
+
+const DD_IMAGES = {
+  hero: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1920&q=85&auto=format&fit=crop',
+  aboutHero: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=1920&q=85&auto=format&fit=crop',
+  contactHero: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1920&q=85&auto=format&fit=crop',
+  bulkHero: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=1920&q=85&auto=format&fit=crop',
+  newsletter: 'https://images.unsplash.com/photo-1513543875167-7e4b7a77e7f2?w=1920&q=85&auto=format&fit=crop',
+  writing: 'https://images.unsplash.com/photo-1580894908361-967195033215?w=800&q=85&auto=format&fit=crop',
+  notebooks: 'https://images.unsplash.com/photo-1531346878377-a5be2089870a?w=800&q=85&auto=format&fit=crop',
+  art: 'https://images.unsplash.com/photo-1513364776144-775362417c60?w=800&q=85&auto=format&fit=crop',
+  school: 'https://images.unsplash.com/photo-1580582932707-6589b69fdad8?w=800&q=85&auto=format&fit=crop',
+  office: 'https://images.unsplash.com/photo-1586953208448-b35d0de33444?w=800&q=85&auto=format&fit=crop',
+  study: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=85&auto=format&fit=crop',
+  accessories: 'https://images.unsplash.com/photo-1455390582261-994c3a5aa252?w=800&q=85&auto=format&fit=crop',
+  gifts: 'https://images.unsplash.com/photo-1549465220-1a01b130c11c?w=800&q=85&auto=format&fit=crop',
+  penSet: 'https://images.unsplash.com/photo-1580874260057-8bc7a9a71129?w=600&q=85&auto=format&fit=crop',
+  notebook: 'https://images.unsplash.com/photo-1544816155-12df9643f363?w=600&q=85&auto=format&fit=crop',
+  markers: 'https://images.unsplash.com/photo-1513364776144-775362417c60?w=600&q=85&auto=format&fit=crop',
+  organizer: 'https://images.unsplash.com/photo-1586953208448-b35d0de33444?w=600&q=85&auto=format&fit=crop',
+  sketchbook: 'https://images.unsplash.com/photo-1513364776144-775362417c60?w=600&q=85&auto=format&fit=crop',
+  planner: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=600&q=85&auto=format&fit=crop',
+  calculator: 'https://images.unsplash.com/photo-1587144541725-8e7934c4b1e5?w=600&q=85&auto=format&fit=crop',
+  bundleSchool: 'https://images.unsplash.com/photo-1580582932707-6589b69fdad8?w=800&q=85&auto=format&fit=crop',
+  bundleStudent: 'https://images.unsplash.com/photo-1580894908361-967195033215?w=800&q=85&auto=format&fit=crop',
+  bundleArtist: 'https://images.unsplash.com/photo-1513364776144-775362417c60?w=800&q=85&auto=format&fit=crop',
+  bundleOffice: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=800&q=85&auto=format&fit=crop',
+  bundleExam: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=85&auto=format&fit=crop',
+  gallery1: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=85&auto=format&fit=crop',
+  gallery2: 'https://images.unsplash.com/photo-1513543875167-7e4b7a77e7f2?w=800&q=85&auto=format&fit=crop',
+  gallery3: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=800&q=85&auto=format&fit=crop',
+  gallery4: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&q=85&auto=format&fit=crop',
+  team1: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=85&auto=format&fit=crop',
+  team2: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&q=85&auto=format&fit=crop',
+  team3: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&q=85&auto=format&fit=crop',
+  team4: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=85&auto=format&fit=crop',
+  testimonial1: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&q=85&auto=format&fit=crop',
+  testimonial2: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&q=85&auto=format&fit=crop',
+  testimonial3: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=85&auto=format&fit=crop',
+  blogFeatured: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=85&auto=format&fit=crop',
+  blog1: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&q=85&auto=format&fit=crop',
+  blog2: 'https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?w=800&q=85&auto=format&fit=crop',
+  blog3: 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&q=85&auto=format&fit=crop',
+  blog4: 'https://images.unsplash.com/photo-1513364776144-775362417c60?w=800&q=85&auto=format&fit=crop',
+  blog5: 'https://images.unsplash.com/photo-1580582932707-6589b69fdad8?w=800&q=85&auto=format&fit=crop',
+  blog6: 'https://images.unsplash.com/photo-1456324504439-367ceeef855f?w=800&q=85&auto=format&fit=crop',
+  aboutStory: 'https://images.unsplash.com/photo-1513543875167-7e4b7a77e7f2?w=900&q=85&auto=format&fit=crop'
+};

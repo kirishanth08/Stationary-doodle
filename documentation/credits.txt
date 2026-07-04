@@ -1,0 +1,61 @@
+Doodle Desk — Credits & Attributions
+=====================================================
+Assignment 08 — Static HTML Website
+
+FRAMEWORKS & LIBRARIES
+----------------------
+Bootstrap 5.3.3
+  https://getbootstrap.com/
+  License: MIT
+
+Font Awesome 6.5.1
+  https://fontawesome.com/
+  License: Font Awesome Free License (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT)
+
+Google Fonts
+  Quicksand — https://fonts.google.com/specimen/Quicksand
+    Designed by Andrew Paglinawan | Open Font License
+  Source Sans Pro — https://fonts.google.com/specimen/Source+Sans+3
+    Designed by Paul D. Hunt | Open Font License
+
+FONTS (Local)
+-------------
+assets/fonts/ — Reserved for self-hosted font files if CDN is not used.
+
+IMAGES
+------
+Placeholder WebP images generated via assets/images/generate_images.py
+Replace with licensed stock photography or original photography before production.
+
+Suggested free image sources:
+  Unsplash — https://unsplash.com/ (Unsplash License)
+  Pexels — https://pexels.com/ (Pexels License)
+
+REFERENCE DESIGN INSPIRATION
+----------------------------
+Hover interaction quality referenced from:
+  REF 1: https://boutique-lake-mu.vercel.app/
+  REF 2: https://deep-space-rosy.vercel.app/
+
+INTEGRATION SERVICES (Placeholders)
+-----------------------------------
+Formspree — https://formspree.io/ (Form handling)
+Mailchimp — https://mailchimp.com/ (Email newsletter)
+Google Maps — https://maps.google.com/ (Map embed)
+
+ICONS USED (Font Awesome)
+-------------------------
+fa-pencil-alt, fa-moon, fa-sun, fa-language, fa-check, fa-map-marker-alt,
+fa-phone, fa-envelope, fa-facebook-f, fa-instagram, fa-twitter, fa-pinterest-p,
+fa-pen-fancy, fa-palette, fa-briefcase, fa-boxes, fa-award, fa-truck,
+fa-percent, fa-headset, fa-filter, fa-sort, fa-cart-plus, fa-search,
+fa-star, fa-share-alt, fa-clock, fa-user, fa-comment, fa-arrow-left
+
+DEVELOPMENT
+-----------
+Assignment: 08 — Stationery & School Supplies Store Website
+Project Type: Static HTML Website (No Dashboard)
+Tech Stack: HTML5, CSS3, Bootstrap 5, JavaScript ES6+
+
+© 2026 Doodle Desk. All rights reserved.
+Template created for educational purposes.
