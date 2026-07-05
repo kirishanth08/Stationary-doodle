@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Shop Doodle Desk premium stationery — notebooks, pens, art supplies, office tools. Filter by category, brand, price, rating, and color.">
+  <meta name="description"
+    content="Shop Doodle Desk premium stationery — notebooks, pens, art supplies, office tools. Filter by category, brand, price, rating, and color.">
   <title>All Products | Doodle Desk</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&family=Source+Sans+Pro:wght@400;600;700&display=swap"
+    rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
   <link href="../assets/css/style.css" rel="stylesheet">
@@ -15,12 +19,16 @@
   <link href="../assets/css/rtl.css" rel="stylesheet">
   <link href="../assets/css/doodle-desk.css" rel="stylesheet">
 </head>
+
 <body>
   <a href="#main-content" class="skip-link">Skip to main content</a>
   <nav class="navbar navbar-expand-lg navbar-stationery sticky-top" aria-label="Main navigation">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><span class="brand-mark" aria-hidden="true">DD</span><span class="brand-text">Doodle <span class="brand-accent">Desk</span></span></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html"><span class="brand-mark"
+          aria-hidden="true">DD</span><span class="brand-text">Doodle <span class="brand-accent">Desk</span></span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation"><span
+          class="navbar-toggler-icon"></span></button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0">
           <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
@@ -33,32 +41,45 @@
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
         <div class="navbar-actions">
-          <button class="btn-icon search-toggle" type="button" aria-label="Open search"><i class="fas fa-search" aria-hidden="true"></i></button>
-          <a href="cart.html" class="btn-icon cart-btn" aria-label="Cart"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span class="cart-count">0</span></a>
-          <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button"><i class="fas fa-moon" aria-hidden="true"></i><i class="fas fa-sun" aria-hidden="true"></i></button>
-          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><i class="fas fa-language" aria-hidden="true"></i></button>
+          <button class="btn-icon search-toggle" type="button" aria-label="Open search"><i class="fas fa-search"
+              aria-hidden="true"></i></button>
+          <a href="cart.html" class="btn-icon cart-btn" aria-label="Cart"><i class="fas fa-shopping-bag"
+              aria-hidden="true"></i><span class="cart-count">0</span></a>
+          <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button"><i class="fas fa-moon"
+              aria-hidden="true"></i><i class="fas fa-sun" aria-hidden="true"></i></button>
+          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><i class="fas fa-language"
+              aria-hidden="true"></i></button>
         </div>
       </div>
     </div>
   </nav>
   <main id="main-content">
-    <section class="page-header" aria-labelledby="page-heading">
+    <section class="page-hero" aria-labelledby="page-heading"
+      style="background-image: url('../assets/images/unsplash_46e2404ae4cc193d4e9690a198478c89.webp');">
       <div class="container">
+        <nav aria-label="Breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Products</li>
+          </ol>
+        </nav>
         <h1 id="page-heading">All Products</h1>
-        <nav aria-label="Breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="index.html">Home</a></li><li class="breadcrumb-item active" aria-current="page">Products</li></ol></nav>
+        <p class="text-white-50 mb-0">Premium notebooks, pens, art supplies &amp; office essentials for every desk.</p>
       </div>
     </section>
     <section class="section-padding" aria-labelledby="products-grid-heading">
       <div class="container">
         <div class="row g-4">
           <aside class="col-lg-3">
-            <button class="btn btn-primary-custom d-lg-none w-100 mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#filterSidebarCollapse" aria-expanded="false" aria-controls="filterSidebarCollapse">
+            <button class="btn btn-primary-custom d-lg-none w-100 mb-3" type="button" data-bs-toggle="collapse"
+              data-bs-target="#filterSidebarCollapse" aria-expanded="false" aria-controls="filterSidebarCollapse">
               <i class="fas fa-filter me-2" aria-hidden="true"></i>Show / Hide Filters
             </button>
             <div class="collapse d-lg-block" id="filterSidebarCollapse">
               <div class="filter-sidebar" aria-label="Product filters">
                 <h5><i class="fas fa-filter me-2" aria-hidden="true"></i>Filters</h5>
-                <div class="filter-group"><h6>Categories</h6>
+                <div class="filter-group">
+                  <h6>Categories</h6>
                   <label><input type="checkbox" class="form-check-input me-2"> Writing Supplies</label>
                   <label><input type="checkbox" class="form-check-input me-2"> Notebooks &amp; Journals</label>
                   <label><input type="checkbox" class="form-check-input me-2"> Art &amp; Craft</label>
@@ -67,10 +88,15 @@
                   <label><input type="checkbox" class="form-check-input me-2"> Study Tools</label>
                   <label><input type="checkbox" class="form-check-input me-2"> Gift Collections</label>
                 </div>
-                <div class="filter-group"><h6>Price Range</h6>
-                  <div class="price-slider-wrap"><input type="range" id="priceRange" min="0" max="150" value="150" aria-label="Maximum price"><div class="price-slider-values"><span>$0</span><span id="priceRangeValue">$0 – $150</span></div></div>
+                <div class="filter-group">
+                  <h6>Price Range</h6>
+                  <div class="price-slider-wrap"><input type="range" id="priceRange" min="0" max="150" value="150"
+                      aria-label="Maximum price">
+                    <div class="price-slider-values"><span>$0</span><span id="priceRangeValue">$0 – $150</span></div>
+                  </div>
                 </div>
-                <div class="filter-group"><h6>Brands</h6>
+                <div class="filter-group">
+                  <h6>Brands</h6>
                   <label><input type="checkbox" class="form-check-input me-2"> Pilot</label>
                   <label><input type="checkbox" class="form-check-input me-2"> Staedtler</label>
                   <label><input type="checkbox" class="form-check-input me-2"> Faber-Castell</label>
@@ -81,17 +107,21 @@
                   <label><input type="checkbox" class="form-check-input me-2"> Camel</label>
                   <label><input type="checkbox" class="form-check-input me-2"> Casio</label>
                 </div>
-                <div class="filter-group"><h6>Ratings</h6>
+                <div class="filter-group">
+                  <h6>Ratings</h6>
                   <label><input type="checkbox" class="form-check-input me-2"> 4+ Stars</label>
                   <label><input type="checkbox" class="form-check-input me-2"> 3+ Stars</label>
                 </div>
-                <div class="filter-group"><h6>Availability</h6>
+                <div class="filter-group">
+                  <h6>Availability</h6>
                   <label><input type="checkbox" class="form-check-input me-2"> In Stock</label>
                   <label><input type="checkbox" class="form-check-input me-2"> Pre-Order</label>
                 </div>
                 <div class="filter-actions mt-4 d-flex flex-column gap-2">
-                  <button type="button" id="btn-apply-filters" class="btn btn-primary-custom w-100 py-2"><i class="fas fa-check me-2" aria-hidden="true"></i>Apply Filters</button>
-                  <button type="button" id="btn-clear-filters" class="btn btn-outline-custom w-100 py-2"><i class="fas fa-undo me-2" aria-hidden="true"></i>Clear All</button>
+                  <button type="button" id="btn-apply-filters" class="btn btn-primary-custom w-100 py-2"><i
+                      class="fas fa-check me-2" aria-hidden="true"></i>Apply Filters</button>
+                  <button type="button" id="btn-clear-filters" class="btn btn-outline-custom w-100 py-2"><i
+                      class="fas fa-undo me-2" aria-hidden="true"></i>Clear All</button>
                 </div>
               </div>
             </div>
@@ -99,7 +129,13 @@
           <div class="col-lg-9">
             <div class="d-flex flex-wrap justify-content-between align-items-center mb-4 gap-3">
               <p class="mb-0 text-muted" id="products-grid-heading">Showing 12 of 2,500 products</p>
-              <select class="form-select form-select-sm w-auto" aria-label="Sort products"><option>All</option><option>Featured</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Newest</option></select>
+              <select class="form-select form-select-sm w-auto" aria-label="Sort products">
+                <option>All</option>
+                <option>Featured</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest</option>
+              </select>
             </div>
             <div class="row g-4" id="product-grid">
               <!-- products injected by render below - static cards -->
@@ -109,8 +145,21 @@
       </div>
     </section>
   </main>
-  <footer class="footer-stationery"><div class="container"><div class="footer-bottom"><p>&copy; 2026 Doodle Desk. All rights reserved.</p></div></div></footer>
-  <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-dialog-centered"><div class="modal-content"><div class="modal-body"><input type="search" class="form-control" placeholder="Search…" aria-label="Search"></div></div></div></div>
+  <footer class="footer-stationery">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 Doodle Desk. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body"><input type="search" class="form-control" placeholder="Search…" aria-label="Search">
+        </div>
+      </div>
+    </div>
+  </div>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/products.js"></script>
   <script src="../js/theme.js"></script>
@@ -128,7 +177,5 @@
     });
   </script>
 </body>
+
 </html>
-
-
-
