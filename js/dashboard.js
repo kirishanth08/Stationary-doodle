@@ -98,7 +98,11 @@ function initProfileForm(user) {
     e.preventDefault();
     if (!form.checkValidity()) return;
 
-    const success = window.DoodleAuth.updateProfile(nameInput.value, phoneInput.value, user.address || '');
+    // Re-fetch the latest saved address so we don't clobber changes made
+    // in the Address tab earlier in this session with the stale value
+    // captured when the page first loaded.
+    const latestUser = window.DoodleAuth.getCurrentUser() || user;
+    const success = window.DoodleAuth.updateProfile(nameInput.value, phoneInput.value, latestUser.address || '');
     if (success) {
       showDashboardAlert('Profile updated successfully!', 'success');
       initWelcome(window.DoodleAuth.getCurrentUser());
@@ -117,7 +121,11 @@ function initAddressForm(user) {
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const success = window.DoodleAuth.updateProfile(user.name, user.phone || '', addressInput.value);
+    // Re-fetch the latest saved name/phone so we don't clobber changes made
+    // in the Profile tab earlier in this session with the stale values
+    // captured when the page first loaded.
+    const latestUser = window.DoodleAuth.getCurrentUser() || user;
+    const success = window.DoodleAuth.updateProfile(latestUser.name, latestUser.phone || '', addressInput.value);
     if (success) {
       showDashboardAlert('Saved address updated successfully!', 'success');
     } else {
