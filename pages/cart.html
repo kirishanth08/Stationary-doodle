@@ -317,7 +317,11 @@
       checkoutForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        // Skip validation temporarily
+        // Require Full Name and Address before placing the order
+        if (!checkoutForm.checkValidity()) {
+          checkoutForm.classList.add('was-validated');
+          return;
+        }
         checkoutForm.classList.remove('was-validated');
 
         const name = document.getElementById('shippingName').value;
