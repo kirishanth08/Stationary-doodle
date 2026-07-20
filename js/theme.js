@@ -44,8 +44,13 @@ window.DoodleTheme = {
   updateRtlButtons(dir) {
     const toggleBtns = document.querySelectorAll('.rtl-toggle');
     const label = dir === 'rtl' ? 'Switch to LTR' : 'Switch to RTL';
+    const text = dir === 'rtl' ? 'LTR' : 'RTL';
     toggleBtns.forEach(btn => {
       btn.setAttribute('aria-label', label);
+      const textEl = btn.querySelector('.rtl-toggle-text');
+      if (textEl) {
+        textEl.textContent = text;
+      }
       if (dir === 'rtl') {
         btn.classList.add('rtl-active');
       } else {

@@ -224,6 +224,19 @@ img {
   transform: translateY(-2px);
 }
 
+.rtl-toggle-text {
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1;
+  transition: var(--transition-base);
+}
+
+.btn-icon:hover .rtl-toggle-text {
+  color: var(--color-secondary-dark);
+  transform: translateY(-2px);
+}
+
 .navbar-admin {
   background: linear-gradient(180deg, #F8FBFF 0%, #EAF3FF 100%);
   border-bottom: 1px solid rgba(15, 76, 129, 0.16);
@@ -837,6 +850,8 @@ img {
 
 /* --- Icon Boxes --- */
 .icon-box {
+  display: flex;
+  flex-direction: column;
   text-align: center;
   padding: var(--spacing-lg);
   background: var(--color-card);
@@ -845,6 +860,18 @@ img {
   border-top: 4px solid var(--color-primary);
   transition: var(--transition-base);
   height: 100%;
+}
+
+.icon-box h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 3rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.icon-box p {
+  margin-bottom: 0;
 }
 
 .icon-box:hover {
@@ -1549,6 +1576,28 @@ img {
     margin-bottom: var(--spacing-lg);
   }
   
+}
+
+/* Navbar alignment fix: right after Bootstrap's lg breakpoint (992px) there isn't
+   quite enough room for 8 nav links plus the icon/auth cluster, causing overlap. */
+@media (min-width: 992px) and (max-width: 1200px) {
+  .navbar-stationery .navbar-nav {
+    gap: 0;
+  }
+
+  .navbar-stationery .nav-link {
+    padding: 0.75rem 0.6rem !important;
+    font-size: 0.9rem;
+  }
+
+  .navbar-stationery .navbar-actions {
+    gap: 0.35rem;
+  }
+
+  .navbar-actions .auth-nav-btn {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+  }
 }
 
 /* --- Responsive: Mobile --- */
@@ -3190,6 +3239,79 @@ body.nav-open {
   background: rgba(var(--color-primary-rgb), 0.1);
   color: var(--color-primary);
   font-size: 1.2rem;
+}
+
+/* Standalone auth pages — no navbar/footer, center the card in the viewport */
+.auth-page-standalone {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-page-standalone main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-page-standalone .auth-section,
+.auth-page-standalone main > section.section-padding:first-child {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
+}
+
+.auth-logo-link {
+  color: inherit;
+}
+
+.auth-divider {
+  position: relative;
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.auth-divider::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.auth-divider span {
+  position: relative;
+  background: var(--color-card);
+  padding: 0 0.85rem;
+}
+
+.btn-social-auth {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: 10px;
+  background: var(--color-card);
+  color: var(--color-text);
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: var(--transition-base);
+}
+
+.btn-social-auth:hover {
+  background: rgba(var(--color-primary-rgb), 0.06);
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.btn-social-auth i {
+  font-size: 1.1rem;
 }
 
 .auth-card .form-label {

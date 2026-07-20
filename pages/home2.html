@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="Doodle Desk — an alternate homepage layout showcasing premium stationery, bundles, and bulk programs.">
+  <title>Home 2 | Doodle Desk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700;800&family=Source+Sans+Pro:wght@400;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="../assets/css/style.css" rel="stylesheet">
+  <link href="../assets/css/dark-mode.css" rel="stylesheet">
+  <link href="../assets/css/rtl.css" rel="stylesheet">
+  <link href="../assets/css/doodle-desk.css" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/images/favicon.png">
+</head>
+
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <nav class="navbar navbar-expand-lg navbar-stationery sticky-top" aria-label="Main navigation">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
+        <span class="brand-mark" aria-hidden="true">DD</span>
+        <span class="brand-text">Doodle <span class="brand-accent">Desk</span></span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav"
+        aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="home2.html" aria-current="page">Home 2</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="bundles.html">Bundles</a></li>
+          <li class="nav-item"><a class="nav-link" href="bulk-orders.html">Bulk Orders</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        </ul>
+        <div class="navbar-actions">
+          <button class="btn-icon search-toggle" type="button" aria-label="Open search"><i class="fas fa-search"
+              aria-hidden="true"></i></button>
+          <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button"><i class="fas fa-moon"
+              aria-hidden="true"></i><i class="fas fa-sun" aria-hidden="true"></i></button>
+          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><span class="rtl-toggle-text" aria-hidden="true">RTL</span></button>
+          <a href="user-login.html" class="btn btn-outline-custom btn-sm auth-nav-btn">Login</a>
+          <a href="user-signup.html" class="btn btn-primary-custom btn-sm auth-nav-btn">Sign Up</a>
+          <a href="cart.html" class="btn-icon cart-btn" aria-label="Cart"><i class="fas fa-shopping-bag"
+              aria-hidden="true"></i><span class="cart-count">0</span></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main-content">
+
+    <!-- ========== FULL-WIDTH IMAGE HERO (layout differs from Home 1's split hero) ========== -->
+    <section class="page-hero" aria-labelledby="home2-hero-heading"
+      style="background-image: url('../assets/images/home2-hero.webp');">
+      <div class="container text-center">
+        <span class="hero-badge"><i class="fas fa-star" aria-hidden="true"></i> Premium Stationery</span>
+        <h1 id="home2-hero-heading">Crafted for Every Desk, Every Story</h1>
+        <p class="lead text-white opacity-75 mb-4">A second take on our homepage — same premium catalog, a more
+          editorial layout.</p>
+        <div class="d-flex flex-wrap gap-3 justify-content-center">
+          <a href="products.html" class="btn btn-secondary-custom btn-lg">Shop Collection</a>
+          <a href="bundles.html" class="btn btn-outline-custom text-white btn-lg">Explore Bundles</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CATEGORY ICON STRIP (differs from Home 1's image-card grid) ========== -->
+    <section class="section-padding section-bg reveal-on-scroll" aria-labelledby="home2-categories-heading">
+      <div class="container">
+        <div class="section-title text-center">
+          <h2 id="home2-categories-heading">Browse by Category</h2>
+          <p>A quicker, icon-first way to jump straight to what you need.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href="products.html?category=Writing Supplies" class="icon-box text-decoration-none d-block">
+              <div class="icon-wrap"><i class="fas fa-pen-nib" aria-hidden="true"></i></div>
+              <h3 class="h6 mb-0">Writing</h3>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href="products.html?category=Notebooks %26 Journals" class="icon-box text-decoration-none d-block">
+              <div class="icon-wrap"><i class="fas fa-book-open" aria-hidden="true"></i></div>
+              <h3 class="h6 mb-0">Notebooks</h3>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href="products.html?category=Art %26 Craft" class="icon-box text-decoration-none d-block">
+              <div class="icon-wrap"><i class="fas fa-palette" aria-hidden="true"></i></div>
+              <h3 class="h6 mb-0">Art &amp; Craft</h3>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href="products.html?category=School Essentials" class="icon-box text-decoration-none d-block">
+              <div class="icon-wrap"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+              <h3 class="h6 mb-0">School</h3>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href="products.html?category=Office Supplies" class="icon-box text-decoration-none d-block">
+              <div class="icon-wrap"><i class="fas fa-briefcase" aria-hidden="true"></i></div>
+              <h3 class="h6 mb-0">Office</h3>
+            </a>
+          </div>
+          <div class="col-6 col-md-4 col-lg-2">
+            <a href="bundles.html" class="icon-box text-decoration-none d-block">
+              <div class="icon-wrap"><i class="fas fa-gift" aria-hidden="true"></i></div>
+              <h3 class="h6 mb-0">Gift Sets</h3>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STATS BAND ========== -->
+    <section class="stats-section reveal-on-scroll" aria-labelledby="home2-stats-heading">
+      <div class="container">
+        <h2 id="home2-stats-heading" class="visually-hidden">Doodle Desk by the Numbers</h2>
+        <div class="row g-4 text-center">
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <span class="stat-number" data-count="2500" data-suffix="+">0</span>
+              <span class="stat-label">Products Available</span>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <span class="stat-number" data-count="48000" data-suffix="+">0</span>
+              <span class="stat-label">Happy Customers</span>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <span class="stat-number" data-count="320" data-suffix="+">0</span>
+              <span class="stat-label">School Partnerships</span>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <span class="stat-number" data-count="12" data-suffix="+">0</span>
+              <span class="stat-label">Years of Trusted Service</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== BUNDLE SPOTLIGHT (editorial split layout, not a grid) ========== -->
+    <section class="section-padding reveal-on-scroll" aria-labelledby="home2-spotlight-heading">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-6">
+            <img src="../assets/images/college-prep.webp" alt="College bundle of notebooks, pens and planners"
+              class="w-100 rounded-4" loading="lazy">
+          </div>
+          <div class="col-lg-6">
+            <span class="hero-badge"><i class="fas fa-fire" aria-hidden="true"></i> Featured Bundle</span>
+            <h2 id="home2-spotlight-heading" class="mt-3">The College Essentials Bundle</h2>
+            <p class="lead">Everything a student needs for the semester — notebooks, pens, sticky notes, and a
+              planner — bundled and discounted.</p>
+            <p class="mb-4"><span class="card-price-old me-2">$54.99</span><span class="card-price">$41.99</span></p>
+            <a href="bundles.html" class="btn btn-primary-custom btn-lg">Shop This Bundle</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SUCCESS STORY BAND ========== -->
+    <section class="section-padding section-bg reveal-on-scroll" aria-labelledby="home2-story-heading">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8">
+            <div class="success-story">
+              <h2 id="home2-story-heading" class="h4 mb-3">What Our Customers Say</h2>
+              <blockquote>"The quality is consistently excellent and reordering supplies for our whole studio takes
+                minutes, not hours."</blockquote>
+              <p class="mb-0 fw-semibold">— A Doodle Desk customer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== BRAND STRIP ========== -->
+    <section class="section-padding reveal-on-scroll" aria-label="Featured brands">
+      <div class="container text-center">
+
+        <h2 class="text-muted mb-4">Featuring materials from brands we trust</h2>
+        <div class="client-logos">
+          <img src="../assets/images/brands/staedtler.png" alt="Staedtler" loading="lazy">
+          <img src="../assets/images/brands/pilot.png" alt="Pilot" loading="lazy">
+          <img src="../assets/images/brands/moleskine.png" alt="Moleskine" loading="lazy">
+          <img src="../assets/images/brands/fiskars.png" alt="Fiskars" loading="lazy">
+          <img src="../assets/images/brands/post-it.png" alt="Post-it" loading="lazy">
+          <img src="../assets/images/brands/elmers.png" alt="Elmer's" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== NEWSLETTER BAND ========== -->
+    <section class="section-padding newsletter-section reveal-on-scroll" aria-labelledby="home2-newsletter-heading"
+      style="background-image: url('../assets/images/unsplash_c3838b80f64b86091bb43c5b3bf39426.webp');">
+      <div class="container">
+        <div class="row justify-content-center text-center">
+          <div class="col-lg-7">
+            <span class="hero-badge"><i class="fas fa-envelope-open-text" aria-hidden="true"></i> Stay in the
+              Loop</span>
+            <h2 id="home2-newsletter-heading" class="mt-3">Get New Arrivals &amp; Bundle Deals in Your Inbox</h2>
+            <p class="mb-4">Join our newsletter for early access to restocks, seasonal bundles, and members-only
+              discounts. No spam, just good stationery.</p>
+            <form class="row g-2 justify-content-center needs-validation" action="404.html" method="get" novalidate>
+              <div class="col-sm-7">
+                <label for="home2-newsletter-email" class="visually-hidden">Email address</label>
+                <input type="email" class="form-control form-control-lg" id="home2-newsletter-email"
+                  placeholder="Your email address" aria-label="Email for newsletter" required>
+              </div>
+              <div class="col-sm-auto">
+                <button type="submit" class="btn btn-secondary-custom btn-lg w-100">Subscribe</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer-stationery" aria-label="Site footer"></footer>
+
+  <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <h2 class="modal-title h5" id="searchModalLabel">Search Doodle Desk</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body pt-3">
+          <form role="search" action="products.html" method="get">
+            <label for="siteSearch" class="visually-hidden">Search products</label>
+            <input type="search" class="form-control" id="siteSearch" name="q"
+              placeholder="Search notebooks, pens, bundles&hellip;" autocomplete="off">
+          </form>
+          <p class="small text-muted mt-3 mb-0">Popular: <a href="products.html">Gel Pens</a>, <a
+              href="products.html">Planners</a>, <a href="bundles.html">Back to School</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../assets/js/main.js"></script>
+</body>
+
+</html>

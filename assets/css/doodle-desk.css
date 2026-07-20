@@ -31,31 +31,29 @@
   --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* --- Brand logo --- */
-.navbar-brand .brand-mark {
+/* --- Brand logo ---
+   Base styling is unscoped so the exact same logo badge renders anywhere
+   the .brand-mark markup is reused (navbar, footer, auth pages, etc). */
+.brand-mark {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  border-radius: 10px;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 14px;
   background: var(--gradient-gold);
   color: var(--color-primary-dark);
   font-family: var(--font-accent);
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: -0.02em;
-  box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
-}
-
-.navbar-brand .brand-text {
-  font-family: var(--font-heading);
-  font-weight: 700;
+  font-weight: 800;
+  font-size: 0.95rem;
   letter-spacing: -0.03em;
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4), inset 0 -2px 4px rgba(11, 31, 58, 0.08);
+  position: relative;
+  flex-shrink: 0;
 }
 
-.navbar-brand .brand-accent {
-  color: var(--color-secondary);
+.footer-brand .brand-mark {
+  vertical-align: middle;
 }
 
 /* --- Navbar scroll glass --- */
@@ -121,9 +119,26 @@
   animation: floatBob 4s ease-in-out infinite;
 }
 
-.hero-float--pen { top: 18%; right: 8%; font-size: 2.5rem; animation-delay: 0s; }
-.hero-float--pencil { bottom: 22%; left: 5%; font-size: 2rem; animation-delay: 1s; }
-.hero-float--notebook { top: 55%; right: 15%; font-size: 2.2rem; animation-delay: 0.5s; }
+.hero-float--pen {
+  top: 18%;
+  right: 8%;
+  font-size: 2.5rem;
+  animation-delay: 0s;
+}
+
+.hero-float--pencil {
+  bottom: 22%;
+  left: 5%;
+  font-size: 2rem;
+  animation-delay: 1s;
+}
+
+.hero-float--notebook {
+  top: 55%;
+  right: 15%;
+  font-size: 2.2rem;
+  animation-delay: 0.5s;
+}
 
 .hero-section .container {
   position: relative;
@@ -183,6 +198,19 @@
 .page-hero .container {
   position: relative;
   z-index: 1;
+}
+
+/* Bundles hero: lighten the overlay so the curated-supplies photo behind the
+   heading is actually visible instead of reading as a flat color. */
+.page-hero-bundles::before {
+  background: linear-gradient(135deg, rgba(11, 31, 58, 0.55) 0%, rgba(15, 76, 129, 0.4) 100%);
+}
+
+/* Cart hero: same lightened treatment so the placeholder background image
+   stays visible behind the heading. Swap assets/images/cart-hero.webp for a
+   different photo any time — no CSS changes needed. */
+.page-hero-cart::before {
+  background: linear-gradient(135deg, rgba(11, 31, 58, 0.55) 0%, rgba(15, 76, 129, 0.4) 100%);
 }
 
 .page-hero h1 {
@@ -421,7 +449,7 @@ h6 {
   background: var(--color-section);
 }
 
-.category-grid > [class*="col-"] {
+.category-grid>[class*="col-"] {
   display: flex;
 }
 
@@ -664,7 +692,7 @@ textarea:focus-visible,
 }
 
 @media (min-width: 992px) {
-  .category-grid > .col-lg-3 {
+  .category-grid>.col-lg-3 {
     flex: 0 0 auto;
     width: 25%;
   }
@@ -709,6 +737,7 @@ textarea:focus-visible,
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -737,6 +766,8 @@ textarea:focus-visible,
 
 /* --- Testimonials --- */
 .testimonial-card {
+  display: flex;
+  flex-direction: column;
   padding: 2rem;
   height: 100%;
   border-radius: 24px;
@@ -761,12 +792,14 @@ textarea:focus-visible,
   line-height: 1.75;
   color: var(--color-text);
   margin-bottom: 1.5rem;
+  flex-grow: 1;
 }
 
 .testimonial-author {
   display: flex;
   align-items: center;
   gap: 1rem;
+  margin-top: auto;
 }
 
 .testimonial-author img {
@@ -1043,7 +1076,6 @@ textarea:focus-visible,
 /* --- Blog featured --- */
 .blog-featured {
   position: relative;
-  border-radius: 28px;
   overflow: hidden;
   min-height: 420px;
   background-size: cover;
@@ -1105,7 +1137,7 @@ textarea:focus-visible,
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  opacity: 0.7;
+  opacity: 1;
 }
 
 .client-logos span {
@@ -1114,6 +1146,20 @@ textarea:focus-visible,
   font-size: 0.95rem;
   color: var(--color-text-muted);
   letter-spacing: 0.04em;
+}
+
+.client-logos img {
+  height: 34px;
+  width: auto;
+  max-width: 130px;
+  object-fit: contain;
+  filter: none;
+  opacity: 1;
+  transition: var(--transition-smooth);
+}
+
+.client-logos img:hover {
+  transform: scale(1.08);
 }
 
 /* --- Success story --- */
@@ -1145,6 +1191,7 @@ textarea:focus-visible,
 .wishlist-btn-nav {
   position: relative;
 }
+
 .wishlist-count {
   position: absolute;
   top: -4px;
@@ -1173,6 +1220,7 @@ textarea:focus-visible,
   overflow: hidden;
   padding: 2px;
 }
+
 .cart-quantity-picker .qty-btn {
   width: 32px;
   height: 32px;
@@ -1187,10 +1235,12 @@ textarea:focus-visible,
   transition: var(--transition-smooth);
   cursor: pointer;
 }
+
 .cart-quantity-picker .qty-btn:hover {
   background-color: var(--color-primary);
   color: #ffffff;
 }
+
 .cart-quantity-picker .qty-input {
   width: 40px;
   text-align: center;
@@ -1208,11 +1258,13 @@ textarea:focus-visible,
   flex-direction: column;
   height: 100%;
 }
+
 .product-card .card-body {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
 }
+
 .product-card .card-title {
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -1223,12 +1275,21 @@ textarea:focus-visible,
   margin-top: 0.25rem;
   margin-bottom: 0.5rem;
 }
+
 .product-card .product-rating {
   margin-top: auto;
 }
 
+/* Guarantee the CTA button always sits flush with the bottom of the card,
+   in a straight line across every card in the row, no matter how much
+   text (title/brand) sits above it. */
+.product-card .product-card-actions-bottom {
+  margin-top: auto !important;
+}
+
 /* Force product actions to be visible on touch screen devices */
 @media (max-width: 991.98px) {
+
   .product-card .product-card-actions,
   .product-card .product-card-media-actions {
     opacity: 1 !important;
@@ -1436,7 +1497,7 @@ textarea:focus-visible,
   margin: 0 !important;
 }
 
-#product-grid > .product-grid-item {
+#product-grid>.product-grid-item {
   display: flex;
   width: 100% !important;
   max-width: none !important;
@@ -1444,7 +1505,7 @@ textarea:focus-visible,
   margin: 0 !important;
 }
 
-#product-grid > .product-grid-empty {
+#product-grid>.product-grid-empty {
   grid-column: 1 / -1 !important;
 }
 
@@ -1635,6 +1696,30 @@ textarea:focus-visible,
   color: #ffffff !important;
 }
 
+/* --- Header auth buttons (logged-out state) --- */
+.navbar-actions .auth-nav-btn {
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.navbar-actions .admin-login-btn {
+  opacity: 0.65;
+  font-size: 0.9rem;
+}
+
+.navbar-actions .admin-login-btn:hover {
+  opacity: 1;
+}
+
+@media (max-width: 991.98px) {
+  .navbar-actions {
+    flex-wrap: wrap;
+    row-gap: 0.5rem;
+  }
+}
+
 :root[data-theme="dark"] .navbar-stationery .navbar-actions .btn-icon {
   background: rgba(30, 41, 59, 0.68) !important;
   border-color: var(--color-border) !important;
@@ -1713,11 +1798,13 @@ textarea:focus-visible,
 }
 
 @media (max-width: 575.98px) {
+
   .category-card.card-stationery .card-img-wrap,
   #product-grid .product-card .card-img-wrap {
     height: 210px !important;
   }
 }
+
 /* Requested design system final layer */
 :root {
   --color-primary: #1565C0;
@@ -1786,13 +1873,6 @@ body {
   transition: var(--transition-base) !important;
 }
 
-h1, h2, h3, h4, h5, h6,
-.navbar-brand,
-.nav-link,
-.btn {
-  font-family: var(--font-heading) !important;
-  letter-spacing: 0 !important;
-}
 
 .section-bg,
 .category-showcase,
@@ -1811,16 +1891,68 @@ h1, h2, h3, h4, h5, h6,
   transition: var(--transition-base) !important;
 }
 
-.navbar-stationery .navbar-brand,
-.navbar-stationery .brand-text,
-.navbar-stationery .brand-accent {
-  color: var(--color-primary) !important;
+/* ===============================
+   Universal Doodle Desk Logo
+   =============================== */
+
+.navbar-brand,
+.auth-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 20px;
+
+  background: #EEF5FF;
+
+  border: 1px solid #DCE8F7;
+
+  border-radius: 999px;
+
+  text-decoration: none;
+
+  box-shadow: 0 8px 22px rgba(21, 101, 192, .08);
+
+  transition: .3s;
 }
 
-.navbar-brand .brand-mark {
-  background: var(--color-secondary) !important;
-  color: var(--color-primary) !important;
-  box-shadow: 0 4px 12px rgba(255, 214, 0, 0.32) !important;
+.navbar-brand:hover,
+.auth-logo:hover {
+  transform: translateY(-2px);
+}
+
+.navbar-brand .brand-mark,
+.auth-logo .brand-mark {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, #FFD600, #FFE866);
+
+  color: #1565C0;
+
+  font-size: 18px;
+  font-weight: 800;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  box-shadow: 0 8px 18px rgba(255, 214, 0, .35);
+}
+
+.navbar-brand .brand-text,
+.auth-logo .brand-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.navbar-brand .brand-accent,
+.auth-logo .brand-accent {
+  color: #1565C0;
+  font-weight: 800;
 }
 
 .navbar-stationery .nav-link {
@@ -1856,7 +1988,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .navbar-stationery .navbar-actions .btn-icon,
-.navbar-stationery .dropdown > .btn-icon {
+.navbar-stationery .dropdown>.btn-icon {
   width: 44px !important;
   height: 44px !important;
   min-width: 44px !important;
@@ -1869,15 +2001,15 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .navbar-stationery .navbar-actions .btn-icon i,
-.navbar-stationery .dropdown > .btn-icon i {
+.navbar-stationery .dropdown>.btn-icon i {
   color: inherit !important;
   transition: var(--transition-base) !important;
 }
 
 .navbar-stationery .navbar-actions .btn-icon:hover,
 .navbar-stationery .navbar-actions .btn-icon:focus-visible,
-.navbar-stationery .dropdown > .btn-icon:hover,
-.navbar-stationery .dropdown > .btn-icon:focus-visible {
+.navbar-stationery .dropdown>.btn-icon:hover,
+.navbar-stationery .dropdown>.btn-icon:focus-visible {
   background: var(--color-secondary) !important;
   border-color: var(--color-secondary) !important;
   color: var(--color-primary-dark) !important;
@@ -1885,7 +2017,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .navbar-stationery .navbar-actions .btn-icon:hover i,
-.navbar-stationery .dropdown > .btn-icon:hover i {
+.navbar-stationery .dropdown>.btn-icon:hover i {
   transform: translateY(-2px) !important;
 }
 
@@ -2043,7 +2175,7 @@ textarea:focus-visible,
 }
 
 :root[data-theme="dark"] .navbar-stationery .navbar-actions .btn-icon,
-:root[data-theme="dark"] .navbar-stationery .dropdown > .btn-icon {
+:root[data-theme="dark"] .navbar-stationery .dropdown>.btn-icon {
   background: var(--color-card) !important;
   color: #FFFFFF !important;
   border-color: var(--color-border) !important;
@@ -2061,7 +2193,7 @@ textarea:focus-visible,
   }
 
   .navbar-stationery .navbar-actions .btn-icon,
-  .navbar-stationery .dropdown > .btn-icon,
+  .navbar-stationery .dropdown>.btn-icon,
   .navbar-toggler {
     width: 44px !important;
     height: 44px !important;
@@ -2088,6 +2220,7 @@ textarea:focus-visible,
 }
 
 @media (prefers-reduced-motion: reduce) {
+
   *,
   *::before,
   *::after {
@@ -2108,3 +2241,193 @@ textarea:focus-visible,
 #tab-wishlist {
   display: none !important;
 }
+
+/* Navbar Home Dropdown */
+
+.navbar .dropdown-menu {
+  border-radius: 12px;
+  padding: 8px;
+  min-width: 180px;
+}
+
+.navbar .dropdown-item {
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: .25s;
+}
+
+.navbar .dropdown-item:hover {
+  background: #0d6efd;
+  color: #fff;
+}
+
+.navbar .dropdown-item.active {
+  background: #0d6efd;
+  color: #fff;
+}
+
+/* ============================================
+   Trusted By Section
+============================================ */
+
+/* Trusted Brands */
+
+.brand-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.brand-item {
+  width: 170px;
+  height: 70px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.brand-item img {
+  max-width: 140px;
+  max-height: 45px;
+
+  width: auto;
+  height: auto;
+
+  object-fit: contain;
+
+  filter: none;
+  opacity: 1;
+
+  transition: transform .3s ease;
+}
+
+.brand-item img:hover {
+  transform: scale(1.08);
+}
+
+/* ===== Authentication Logo ===== */
+
+.auth-page-standalone .navbar-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 14px 22px;
+
+  background: rgba(255, 255, 255, .85);
+  border: 1px solid #E5E7EB;
+
+  border-radius: 999px;
+
+  box-shadow: 0 8px 24px rgba(15, 23, 42, .08);
+
+  text-decoration: none;
+
+  transform: scale(.92);
+  transform-origin: center;
+}
+
+.auth-page-standalone .brand-mark {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+}
+
+.auth-page-standalone .brand-text {
+  font-size: 1.05rem;
+}
+
+/* =====================================================
+   AUTH LOGO
+   (Same look as navbar without affecting the navbar)
+   ===================================================== */
+
+.auth-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+
+  padding: 12px 20px;
+
+  background: #EEF5FF;
+  border: 1px solid #DCE8F7;
+
+  border-radius: 999px;
+
+  text-decoration: none;
+
+  box-shadow: 0 8px 24px rgba(15, 76, 129, .08);
+}
+
+.auth-logo .brand-mark {
+  width: 48px;
+  height: 48px;
+
+  border-radius: 14px;
+
+  background: linear-gradient(135deg, #FFD600, #FFE766);
+
+  color: #1565C0;
+
+  font-size: 18px;
+  font-weight: 800;
+
+  box-shadow: 0 8px 18px rgba(255, 214, 0, .35);
+}
+
+.auth-logo .brand-text {
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1F2937;
+}
+
+.auth-logo .brand-accent {
+  color: #1565C0;
+  font-weight: 800;
+}
+
+/* =========================
+   Footer Logo
+========================= */
+
+.footer-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.footer-logo-icon {
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+
+  background: linear-gradient(135deg, #FFD54A, #FFC107);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #1565C0;
+  font-weight: 800;
+  font-size: 16px;
+
+  flex-shrink: 0;
+}
+
+.footer-logo-text {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1;
+}
+
+.footer-logo-text span {
+  color: #2F80ED;
+  font-weight: 800;
+}
+

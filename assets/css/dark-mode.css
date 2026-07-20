@@ -150,6 +150,26 @@
   background-color: var(--color-section);
 }
 
+/* Gold/yellow CTAs (Buy Bundle, Subscribe, etc.) inherit --color-text which turns
+   near-white in dark mode, making the text unreadable on the gold background.
+   Force a dark, high-contrast label color instead. */
+[data-theme="dark"] .btn-secondary-custom {
+  color: #1A1300 !important;
+}
+
+[data-theme="dark"] .btn-secondary-custom:hover,
+[data-theme="dark"] .btn-secondary-custom:focus {
+  color: #1A1300 !important;
+}
+
+/* Sale/discount ribbon: strengthen the gradient and add a subtle outline so the
+   badge stays legible against dark product photography in dark mode. */
+[data-theme="dark"] .product-card .sale-ribbon {
+  background: linear-gradient(135deg, #DC2626 0%, #EA580C 100%);
+  color: #fff;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18), 0 16px 26px rgba(0, 0, 0, 0.45);
+}
+
 /* Active color swatch outline in dark mode */
 [data-theme="dark"] .color-swatch.active {
   border-color: var(--color-secondary) !important;

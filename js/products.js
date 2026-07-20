@@ -3,7 +3,7 @@
  */
 'use strict';
 
-const PRODUCT_DATA_VERSION = '2026-07-02-campus-polychromos-images';
+const PRODUCT_DATA_VERSION = '2026-07-19-v2';
 
 const DEFAULT_PRODUCTS = [
   {
@@ -24,7 +24,7 @@ const DEFAULT_PRODUCTS = [
     name: 'Jotter Ballpoint Pen',
     category: 'Writing Supplies',
     price: 19.99,
-    oldPrice: null,
+    oldPrice: 25.99,
     rating: 4.6,
     description: 'The iconic Parker Jotter. Sleek, professional, and built with a stainless steel body. Ink flows smoothly for a reliable writing experience.',
     image: '../assets/images/Jotter_Ballpoint_Pen_202607021224.jpeg',
@@ -63,7 +63,7 @@ const DEFAULT_PRODUCTS = [
     name: 'Campus Notebooks (5 Pack)',
     category: 'Notebooks & Journals',
     price: 15.99,
-    oldPrice: null,
+    oldPrice: 19.99,
     rating: 4.8,
     description: 'Lightweight notebooks with smooth paper, designed specifically for students taking multiple classes. Includes color-coded spine tape.',
     image: '../assets/images/Campus Notebooks (5 Pack).jpg',
@@ -89,7 +89,7 @@ const DEFAULT_PRODUCTS = [
     name: 'Artists Acrylic Color Set',
     category: 'Art & Craft',
     price: 18.50,
-    oldPrice: null,
+    oldPrice: 20.50,
     rating: 4.6,
     description: 'Vibrant, fast-drying acrylic paints with excellent coverage and a rich satin finish. Ideal for canvas, wood, and mixed media art projects.',
     image: '../assets/images/Artists_Acrylic_Color_Set_202607021228.jpeg',
@@ -102,7 +102,7 @@ const DEFAULT_PRODUCTS = [
     name: 'Geometry Premium Box',
     category: 'School Essentials',
     price: 6.99,
-    oldPrice: null,
+    oldPrice: 9.99,
     rating: 4.5,
     description: 'Complete geometry instrument kit with die-cast compass, divider, ruler, protractor, set squares, and mechanical pencil.',
     image: '../assets/images/Geometry_Premium_Box_202607021229.jpeg',
@@ -115,7 +115,7 @@ const DEFAULT_PRODUCTS = [
     name: 'Frixion Erasable Highlighters',
     category: 'School Essentials',
     price: 9.49,
-    oldPrice: null,
+    oldPrice: 12.49,
     rating: 4.7,
     description: 'Highlight and erase repeatedly without damaging books or documents. Thermo-sensitive ink disappears completely with friction.',
     image: '../assets/images/Frixion_Erasable_Highlighters_202607021233.jpeg',
@@ -141,7 +141,7 @@ const DEFAULT_PRODUCTS = [
     name: 'fx-991EX Scientific Calculator',
     category: 'Study Tools',
     price: 22.99,
-    oldPrice: null,
+    oldPrice: 28.99,
     rating: 4.8,
     description: 'High-resolution LCD display shows formulas in textbook format. Includes spreadsheets, matrix calculation, vector analysis, and solver.',
     image: '../assets/images/fx-991EX_Scientific_Calculator_202607021235.jpeg',
@@ -154,7 +154,7 @@ const DEFAULT_PRODUCTS = [
     name: 'Sonnet Pen & Notebook Gift Set',
     category: 'Gift Collections',
     price: 110.00,
-    oldPrice: null,
+    oldPrice: 125.69,
     rating: 4.9,
     description: 'A beautiful luxury gift set combining a gold-accented Parker Sonnet ballpoint pen and a premium faux-leather notebook in an elegant box.',
     image: '../assets/images/Sonnet_Pen_Notebook_Gift_Set_202607021237.jpeg',
@@ -176,24 +176,24 @@ window.DoodleStore = {
     const data = localStorage.getItem('doodle_products');
     return data ? JSON.parse(data) : DEFAULT_PRODUCTS;
   },
-  
+
   getProductById(id) {
     const list = this.getProducts();
     return list.find(p => p.id === id);
   },
-  
+
   saveProducts(list) {
     localStorage.setItem('doodle_products', JSON.stringify(list));
     // Trigger storage event for cross-tab sync
     window.dispatchEvent(new Event('storage'));
   },
-  
+
   addProduct(product) {
     const list = this.getProducts();
     list.push(product);
     this.saveProducts(list);
   },
-  
+
   updateProduct(id, updated) {
     const list = this.getProducts();
     const idx = list.findIndex(p => p.id === id);
@@ -204,7 +204,7 @@ window.DoodleStore = {
     }
     return false;
   },
-  
+
   deleteProduct(id) {
     let list = this.getProducts();
     list = list.filter(p => p.id !== id);

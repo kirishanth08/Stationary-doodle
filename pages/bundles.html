@@ -18,6 +18,9 @@
   <link href="../assets/css/dark-mode.css" rel="stylesheet">
   <link href="../assets/css/rtl.css" rel="stylesheet">
   <link href="../assets/css/doodle-desk.css" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/images/favicon.png">
 </head>
 
 <body>
@@ -47,15 +50,14 @@
               aria-hidden="true"></i><span class="cart-count">0</span></a>
           <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button"><i class="fas fa-moon"
               aria-hidden="true"></i><i class="fas fa-sun" aria-hidden="true"></i></button>
-          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><i class="fas fa-language"
-              aria-hidden="true"></i></button>
+          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><span class="rtl-toggle-text" aria-hidden="true">RTL</span></button>
         </div>
       </div>
     </div>
   </nav>
   <main id="main-content">
-    <section class="page-hero" aria-labelledby="page-heading"
-      style="background-image: url('../assets/images/unsplash_bde515ec3bf4b29b822f5aeb864b3b60.webp');">
+    <section class="page-hero page-hero-bundles" aria-labelledby="page-heading"
+      style="background-image: url('../assets/images/bundles-hero.webp');">
       <div class="container">
         <nav aria-label="Breadcrumb">
           <ol class="breadcrumb">
@@ -228,40 +230,7 @@
       </div>
     </section>
   </main>
-  <footer class="footer-stationery" aria-label="Site footer">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-4 col-md-6">
-          <h5 class="footer-brand"><span class="brand-mark me-2" aria-hidden="true">DD</span> About Doodle Desk</h5>
-          <p>Premium stationery for students, professionals, and creators.</p>
-          <div class="social-links mt-3"><a href="https://www.instagram.com/" target="_blank" rel="noreferrer"
-              aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a><a
-              href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook"><i
-                class="fab fa-facebook-f" aria-hidden="true"></i></a></div>
-        </div>
-        <div class="col-6 col-lg-2">
-          <h5>Categories</h5><a href="products.html?category=Writing Supplies">Writing Supplies</a><a
-            href="products.html?category=Notebooks %26 Journals">Notebooks</a><a
-            href="products.html?category=Art %26 Craft">Art &amp; Craft</a>
-        </div>
-        <div class="col-6 col-lg-2">
-          <h5>Support</h5><a href="contact.html">Contact</a><a href="bulk-orders.html">Bulk Orders</a>
-        </div>
-        <div class="col-6 col-lg-2">
-          <h5>Quick Links</h5><a href="products.html">Shop</a><a href="blog.html">Blog</a>
-        </div>
-        <div class="col-lg-2">
-          <h5>Newsletter</h5>
-          <form class="footer-newsletter needs-validation" action="404.html" novalidate><input type="email"
-              class="form-control form-control-sm mb-2" placeholder="Email" required aria-label="Email"><button
-              type="submit" class="btn btn-secondary-custom btn-sm w-100">Subscribe</button></form>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <p>&copy; 2026 Doodle Desk. All rights reserved.</p>
-      </div>
-    </div>
-  </footer>
+  <footer class="footer-stationery" aria-label="Site footer"></footer>
   <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
