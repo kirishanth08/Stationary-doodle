@@ -244,6 +244,31 @@
   color: var(--color-text);
 }
 
+/* Contact page FAQ accordion (.accordion-doodle) never had a dark-mode
+   override, so its button/body kept their light background while the
+   generic dark-mode link rule below still forced <a> text to white —
+   making links like "Shipping & Delivery page" invisible (white on
+   white). Darken the accordion to match the rest of the page, and give
+   links inside it a visible accent color instead of white. */
+[data-theme="dark"] .accordion-doodle .accordion-button {
+  background: var(--color-section);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .accordion-doodle .accordion-button:not(.collapsed) {
+  background: var(--color-section);
+  color: var(--color-secondary);
+}
+
+[data-theme="dark"] .accordion-doodle .accordion-body {
+  background: var(--color-card);
+  color: var(--color-text);
+}
+
+[data-theme="dark"] .accordion-doodle .accordion-body a {
+  color: var(--color-secondary) !important;
+}
+
 /* Table dark mode */
 [data-theme="dark"] .discount-table tbody tr:hover {
   background: var(--color-section);
