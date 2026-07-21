@@ -18,52 +18,19 @@
 <body class="auth-page">
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- ========== NAVBAR ========== -->
-  <nav class="navbar navbar-expand-lg navbar-stationery sticky-top" aria-label="Main navigation">
+  <!-- ========== MINIMAL AUTH HEADER (no full navbar) ========== -->
+  <header class="auth-minimal-header py-3">
     <div class="container">
-      <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-        <span class="brand-mark" aria-hidden="true">DD</span>
+      <a class="navbar-brand d-inline-flex align-items-center gap-2 text-decoration-none" href="index.html">
+        <img src="../assets/images/logo-mark.svg" alt="" class="brand-mark" aria-hidden="true" width="36" height="36">
         <span class="brand-text">Doodle <span class="brand-accent">Desk</span></span>
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="mainNav">
-        <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-          <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
-          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
-          <li class="nav-item"><a class="nav-link" href="bundles.html">Bundles</a></li>
-          <li class="nav-item"><a class="nav-link" href="bulk-orders.html">Bulk Orders</a></li>
-          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        </ul>
-        <div class="navbar-actions">
-          <button class="btn-icon search-toggle" type="button" aria-label="Open search"><i class="fas fa-search" aria-hidden="true"></i></button>
-          <a href="cart.html" class="btn-icon cart-btn" aria-label="Cart"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span class="cart-count">0</span></a>
-          <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button"><i class="fas fa-moon" aria-hidden="true"></i><i class="fas fa-sun" aria-hidden="true"></i></button>
-          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><i class="fas fa-language" aria-hidden="true"></i></button>
-        </div>
-      </div>
     </div>
-  </nav>
+  </header>
 
   <!-- ========== MAIN CONTENT ========== -->
   <main id="main-content">
-    <section class="page-header" aria-labelledby="page-heading">
-      <div class="container">
-        <h1 id="page-heading">Account Signup</h1>
-        <nav aria-label="Breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Signup</li>
-          </ol>
-        </nav>
-      </div>
-    </section>
-
-    <section class="section-padding auth-section">
+    <section class="auth-page-wrap section-padding auth-section">
       <div class="container">
         <div class="row justify-content-center align-items-center">
           <div class="col-md-6 col-lg-5">
@@ -126,7 +93,14 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary-custom w-100 py-2.5 rounded-3 mb-3"><i class="fas fa-user-plus me-2"></i>Sign Up</button>
-                
+
+                <div class="auth-divider my-3">or continue with</div>
+
+                <div class="d-flex gap-2 mb-3">
+                  <button type="button" class="btn-social w-50"><i class="fab fa-google" aria-hidden="true"></i> Google</button>
+                  <button type="button" class="btn-social w-50"><i class="fab fa-apple" aria-hidden="true"></i> Apple</button>
+                </div>
+
                 <div class="auth-switch text-center mt-3">
                   <p class="small text-muted mb-0">Already have an account? <a href="user-login.html" class="text-decoration-none text-primary-custom fw-bold">Sign In</a></p>
                 </div>
@@ -137,45 +111,6 @@
       </div>
     </section>
   </main>
-
-  <!-- ========== FOOTER ========== -->
-  <footer class="footer-stationery" aria-label="Site footer">
-    <div class="container">
-      <div class="row g-4">
-        <div class="col-lg-4 col-md-6">
-          <h5 class="footer-brand"><span class="brand-mark me-2" aria-hidden="true">DD</span> About Doodle Desk</h5>
-          <p>Premium stationery and supplies for classrooms, offices, and artistic workspaces.</p>
-        </div>
-        <div class="col-6 col-lg-2">
-          <h5>Shop</h5>
-          <a href="products.html">All Products</a>
-          <a href="bundles.html">Bundles</a>
-        </div>
-        <div class="col-6 col-lg-2">
-          <h5>Customer Panel</h5>
-          <a href="user-login.html">Login</a>
-          <a href="admin-login.html">Admin Portal</a>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <h5>Contact</h5>
-          <p class="small mb-0"><i class="fas fa-envelope me-2"></i>hello@doodledesk.com</p>
-        </div>
-      </div>
-      <div class="footer-bottom"><p>&copy; 2026 Doodle Desk. All rights reserved.</p></div>
-    </div>
-  </footer>
-
-  <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-body">
-          <form role="search" action="products.html">
-            <input type="search" class="form-control" placeholder="Search…" aria-label="Search">
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/products.js"></script>

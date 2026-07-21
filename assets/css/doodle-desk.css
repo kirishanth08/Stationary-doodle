@@ -38,6 +38,7 @@
   justify-content: center;
   width: 2.25rem;
   height: 2.25rem;
+  flex-shrink: 0;
   border-radius: 10px;
   background: var(--gradient-gold);
   color: var(--color-primary-dark);
@@ -46,6 +47,7 @@
   font-size: 0.85rem;
   letter-spacing: -0.02em;
   box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+  object-fit: cover;
 }
 
 .navbar-brand .brand-text {
@@ -107,10 +109,23 @@
 .hero-section {
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: calc(100vh - 76px);
+  padding-top: clamp(2rem, 5vw, 3rem);
+  padding-bottom: clamp(2rem, 5vw, 3rem);
   background:
     radial-gradient(circle at 15% 20%, rgba(212, 175, 55, 0.12), transparent 30%),
     radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.1), transparent 25%),
     var(--gradient-primary);
+}
+
+@media (max-width: 991.98px) {
+  .hero-section {
+    min-height: auto;
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
 }
 
 .hero-float {
@@ -1462,10 +1477,11 @@ textarea:focus-visible,
 }
 
 #product-grid .product-card .card-img-wrap {
-  height: 128px !important;
+  height: 230px !important;
   min-height: 0 !important;
   aspect-ratio: auto !important;
   border-radius: 18px 18px 0 0 !important;
+  background: #F1F5F9 !important;
 }
 
 #product-grid .product-card .card-img-wrap a,
@@ -1476,7 +1492,8 @@ textarea:focus-visible,
 }
 
 #product-grid .product-card .card-img-wrap img {
-  object-fit: cover !important;
+  object-fit: contain !important;
+  padding: 0.5rem !important;
 }
 
 #product-grid .product-card .card-body {
@@ -1989,7 +2006,8 @@ h1, h2, h3, h4, h5, h6,
 }
 
 #product-grid .product-card .card-img-wrap {
-  height: 200px !important;
+  height: 230px !important;
+  background: #F1F5F9 !important;
 }
 
 #product-grid .product-card .card-body {
@@ -2108,3 +2126,67 @@ textarea:focus-visible,
 #tab-wishlist {
   display: none !important;
 }
+
+/* --- Minimal auth-page header (no full navbar/footer) --- */
+.auth-minimal-header {
+  border-bottom: 1px solid var(--color-border);
+  background: #FFFFFF;
+}
+
+.auth-minimal-header .navbar-brand img.brand-mark {
+  border-radius: 10px;
+}
+
+.auth-minimal-header .brand-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.auth-minimal-header .brand-accent {
+  color: var(--color-secondary-dark, var(--color-secondary));
+}
+
+.auth-page-wrap {
+  min-height: calc(100vh - 73px);
+  display: flex;
+  align-items: center;
+}
+
+/* --- Social login divider + buttons --- */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-border);
+}
+
+.btn-social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid var(--color-border);
+  background: #fff;
+  border-radius: 10px;
+  padding: 0.55rem 1rem;
+  font-weight: 600;
+  transition: var(--transition-base, all 0.2s ease);
+}
+
+.btn-social:hover {
+  background: var(--color-section);
+  border-color: var(--color-primary);
+}
+
+.btn-social .fa-google { color: #EA4335; }
+.btn-social .fa-apple { color: #111827; }

@@ -3,6 +3,16 @@
  */
 'use strict';
 
+// Inject favicon + logo mark on every page that loads this script
+(function injectFavicon() {
+  if (document.querySelector('link[rel="icon"]')) return;
+  const link = document.createElement('link');
+  link.rel = 'icon';
+  link.type = 'image/svg+xml';
+  link.href = '../assets/images/favicon.svg';
+  document.head.appendChild(link);
+})();
+
 window.DoodleNavbar = {
   render() {
     const nav = document.querySelector('.navbar-stationery');
@@ -11,7 +21,7 @@ window.DoodleNavbar = {
     // Check login status
     let user = null;
     let admin = null;
-    
+
     if (window.DoodleAuth) {
       user = window.DoodleAuth.getCurrentUser();
     }
@@ -36,7 +46,7 @@ window.DoodleNavbar = {
       this.renderAdmin(nav, admin, page);
       return;
     }
-    
+
     const isHome = page === 'index.html' || page === '';
     const isAbout = page === 'about.html';
     const isCategories = page === 'categories.html';
@@ -71,7 +81,6 @@ window.DoodleNavbar = {
           <li><h6 class="dropdown-header text-primary fw-bold">Welcome, ${user.name}</h6></li>
           <li><span class="dropdown-item-text small text-muted">${user.email}</span></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item small" href="user-dashboard.html"><i class="fas fa-tachometer-alt me-2 text-primary"></i>My Dashboard</a></li>
           <li><a class="dropdown-item small" href="cart.html"><i class="fas fa-shopping-cart me-2 text-primary"></i>Shopping Cart</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item small text-danger" href="#" id="navLogoutAction"><i class="fas fa-sign-out-alt me-2"></i>Sign Out</a></li>
@@ -91,11 +100,17 @@ window.DoodleNavbar = {
       `;
     }
 
+    // Dashboard link — only shown when logged in, points to the right dashboard
+    const dashboardHref = admin ? 'admin-dashboard.html' : (user ? 'user-dashboard.html' : null);
+    const dashboardLinkHtml = dashboardHref
+      ? `<li class="nav-item"><a class="nav-link" href="${dashboardHref}">Dashboard</a></li>`
+      : '';
+
     // Injected template
     nav.innerHTML = `
       <div class="container">
         <a class="navbar-brand d-flex align-items-center gap-2" href="index.html">
-          <span class="brand-mark" aria-hidden="true">DD</span>
+          <img src="../assets/images/logo-mark.svg" alt="" class="brand-mark" aria-hidden="true" width="36" height="36">
           <span class="brand-text">Doodle <span class="brand-accent">Desk</span></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -111,20 +126,21 @@ window.DoodleNavbar = {
             <li class="nav-item"><a class="nav-link ${isBulk ? 'active' : ''}" ${isBulk ? 'aria-current="page"' : ''} href="bulk-orders.html">Bulk Orders</a></li>
             <li class="nav-item"><a class="nav-link ${isBlog ? 'active' : ''}" ${isBlog ? 'aria-current="page"' : ''} href="blog.html">Blog</a></li>
             <li class="nav-item"><a class="nav-link ${isContact ? 'active' : ''}" ${isContact ? 'aria-current="page"' : ''} href="contact.html">Contact</a></li>
+            ${dashboardLinkHtml}
           </ul>
           <div class="navbar-actions">
             <button class="btn-icon search-toggle" type="button" aria-label="Open search"><i class="fas fa-search" aria-hidden="true"></i></button>
-            <a href="cart.html" class="btn-icon cart-btn" aria-label="Cart"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span class="cart-count">0</span></a>
-            
-            <div class="dropdown d-inline-block" id="navbar-user-dropdown-wrapper">
-              ${userDropdownHtml}
-            </div>
-
+            <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><i class="fas fa-language" aria-hidden="true"></i></button>
             <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button">
               <i class="fas fa-moon" aria-hidden="true"></i>
               <i class="fas fa-sun" aria-hidden="true"></i>
             </button>
-            <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><i class="fas fa-language" aria-hidden="true"></i></button>
+
+            <div class="dropdown d-inline-block" id="navbar-user-dropdown-wrapper">
+              ${userDropdownHtml}
+            </div>
+
+            <a href="cart.html" class="btn-icon cart-btn" aria-label="Cart"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span class="cart-count">0</span></a>
           </div>
         </div>
       </div>
@@ -132,7 +148,7 @@ window.DoodleNavbar = {
 
     // Bind event listeners
     this.bindEvents();
-    
+
     // Sync active states (theme, counts, dir)
     if (window.DoodleTheme) {
       window.DoodleTheme.applyTheme();
@@ -154,7 +170,7 @@ window.DoodleNavbar = {
     nav.innerHTML = `
       <div class="container-fluid px-4">
         <a class="navbar-brand d-flex align-items-center gap-2" href="admin-dashboard.html">
-          <span class="brand-mark" aria-hidden="true">DD</span>
+          <img src="../assets/images/logo-mark.svg" alt="" class="brand-mark" aria-hidden="true" width="36" height="36">
           <span class="brand-text">Doodle <span class="brand-accent">Admin</span></span>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle admin navigation">
@@ -192,6 +208,46 @@ window.DoodleNavbar = {
     }
   },
 
+  renderFooter() {
+    const footer = document.querySelector('footer.footer-stationery');
+    if (!footer) return;
+
+    footer.innerHTML = `
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-4 col-md-6">
+            <h5 class="footer-brand d-flex align-items-center"><img src="../assets/images/logo-mark.svg" alt="" class="brand-mark me-2" aria-hidden="true" width="32" height="32"> About Doodle Desk</h5>
+            <p>Your trusted destination for premium stationery, school essentials, and creative tools. Everything you need to write, create, and learn.</p>
+            <div class="social-links mt-3">
+              <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+              <a href="https://www.twitter.com/" target="_blank" rel="noreferrer" aria-label="Twitter"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+              <a href="https://www.pinterest.com/" target="_blank" rel="noreferrer" aria-label="Pinterest"><i class="fab fa-pinterest-p" aria-hidden="true"></i></a>
+            </div>
+          </div>
+          <div class="col-6 col-lg-2 col-md-3">
+            <h5>Categories</h5><a href="products.html?category=Writing Supplies">Writing Supplies</a><a href="products.html?category=Notebooks %26 Journals">Notebooks</a><a href="products.html?category=Art %26 Craft">Art &amp; Craft</a><a href="products.html?category=School Essentials">School Essentials</a><a href="products.html?category=Office Supplies">Office Supplies</a>
+          </div>
+          <div class="col-6 col-lg-2 col-md-3">
+            <h5>Customer Support</h5><a href="contact.html">Contact Us</a><a href="contact.html">Shipping</a><a href="contact.html">Returns</a><a href="bulk-orders.html">Bulk Orders</a><a href="contact.html">FAQs</a>
+          </div>
+          <div class="col-6 col-lg-2 col-md-6">
+            <h5>Quick Links</h5><a href="about.html">About Us</a><a href="products.html">Shop All</a><a href="bundles.html">Bundles</a><a href="blog.html">Blog</a>
+          </div>
+          <div class="col-lg-2 col-md-6">
+            <h5>Newsletter</h5>
+            <p class="small">Stay inspired with exclusive offers.</p>
+            <form class="footer-newsletter needs-validation" action="404.html" method="get" novalidate><input type="email" class="form-control form-control-sm mb-2" placeholder="Your email" required aria-label="Email"><button type="submit" class="btn btn-secondary-custom btn-sm w-100">Subscribe</button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2026 Doodle Desk. All rights reserved. | <a href="mailto:hello@doodledesk.com">hello@doodledesk.com</a></p>
+        </div>
+      </div>
+    `;
+  },
+
   bindEvents() {
     // Logout Action
     const logoutBtn = document.getElementById('navLogoutAction');
@@ -226,8 +282,12 @@ window.DoodleNavbar = {
 };
 
 // Autoload logic (interactive/complete state support)
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', () => window.DoodleNavbar.render());
-} else {
+function doodleNavbarAutoload() {
   window.DoodleNavbar.render();
+  window.DoodleNavbar.renderFooter();
+}
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', doodleNavbarAutoload);
+} else {
+  doodleNavbarAutoload();
 }
