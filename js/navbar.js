@@ -250,7 +250,7 @@ window.DoodleNavbar = {
           </div>
           <div class="col-lg-2 col-md-6">
             <h5>Newsletter</h5>
-            <p class="small">Stay inspired with exclusive offers.</p>
+            <p class="small">Stay inspired with new arrivals and exclusive offers.</p>
             <form class="footer-newsletter needs-validation" action="404.html" method="get" novalidate><input type="email" class="form-control form-control-sm mb-2" placeholder="Your email" required aria-label="Email"><button type="submit" class="btn btn-secondary-custom btn-sm w-100">Subscribe</button>
             </form>
           </div>
