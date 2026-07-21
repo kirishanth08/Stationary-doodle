@@ -48,6 +48,7 @@ window.DoodleNavbar = {
     }
 
     const isHome = page === 'index.html' || page === '';
+    const isHome2 = page === 'home2.html';
     const isAbout = page === 'about.html';
     const isCategories = page === 'categories.html';
     const isProducts = page === 'products.html' || page === 'product-details.html';
@@ -86,25 +87,14 @@ window.DoodleNavbar = {
           <li><a class="dropdown-item small text-danger" href="#" id="navLogoutAction"><i class="fas fa-sign-out-alt me-2"></i>Sign Out</a></li>
         </ul>
       `;
-    } else {
-      userDropdownHtml = `
-        <button class="btn-icon border-0" type="button" id="navUserDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="background: transparent;" aria-label="Account options">
-          <i class="far fa-user" style="font-size: 1.1rem;"></i>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="navUserDropdown" style="border: 1px solid var(--color-border); background-color: var(--color-card);">
-          <li><a class="dropdown-item small" href="user-login.html"><i class="fas fa-sign-in-alt me-2 text-primary"></i>User Login</a></li>
-          <li><a class="dropdown-item small" href="user-signup.html"><i class="fas fa-user-plus me-2 text-primary"></i>User Sign Up</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item small" href="admin-login.html"><i class="fas fa-lock me-2 text-secondary"></i>Admin Login</a></li>
-        </ul>
-      `;
     }
 
-    // Dashboard link — only shown when logged in, points to the right dashboard
-    const dashboardHref = admin ? 'admin-dashboard.html' : (user ? 'user-dashboard.html' : null);
-    const dashboardLinkHtml = dashboardHref
-      ? `<li class="nav-item"><a class="nav-link" href="${dashboardHref}">Dashboard</a></li>`
-      : '';
+    // Logged-out header actions: separate Login / Sign Up buttons + a quiet admin-login icon
+    const authButtonsHtml = `
+      <a href="admin-login.html" class="btn-icon admin-login-btn" aria-label="Admin Login" title="Admin Login"><i class="fas fa-user-shield" aria-hidden="true"></i></a>
+      <a href="user-login.html" class="btn btn-outline-custom btn-sm auth-nav-btn">Login</a>
+      <a href="user-signup.html" class="btn btn-primary-custom btn-sm auth-nav-btn">Sign Up</a>
+    `;
 
     // Injected template
     nav.innerHTML = `
@@ -118,7 +108,32 @@ window.DoodleNavbar = {
         </button>
         <div class="collapse navbar-collapse" id="mainNav">
           <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link ${isHome ? 'active' : ''}" ${isHome ? 'aria-current="page"' : ''} href="index.html">Home</a></li>
+            <li class="nav-item dropdown">
+    <a
+        class="nav-link dropdown-toggle ${(isHome || isHome2) ? 'active' : ''}"
+        href="#"
+        id="homeDropdown"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false">
+
+        Home
+    </a>
+
+    <ul class="dropdown-menu shadow-sm border-0">
+        <li>
+            <a class="dropdown-item ${isHome ? 'active' : ''}" href="index.html">
+                Home 1
+            </a>
+        </li>
+
+        <li>
+            <a class="dropdown-item ${isHome2 ? 'active' : ''}" href="home2.html">
+                Home 2
+            </a>
+        </li>
+    </ul>
+</li>
             <li class="nav-item"><a class="nav-link ${isAbout ? 'active' : ''}" ${isAbout ? 'aria-current="page"' : ''} href="about.html">About</a></li>
             <li class="nav-item"><a class="nav-link ${isCategories ? 'active' : ''}" ${isCategories ? 'aria-current="page"' : ''} href="categories.html">Categories</a></li>
             <li class="nav-item"><a class="nav-link ${isProducts ? 'active' : ''}" ${isProducts ? 'aria-current="page"' : ''} href="products.html">Products</a></li>
@@ -126,19 +141,18 @@ window.DoodleNavbar = {
             <li class="nav-item"><a class="nav-link ${isBulk ? 'active' : ''}" ${isBulk ? 'aria-current="page"' : ''} href="bulk-orders.html">Bulk Orders</a></li>
             <li class="nav-item"><a class="nav-link ${isBlog ? 'active' : ''}" ${isBlog ? 'aria-current="page"' : ''} href="blog.html">Blog</a></li>
             <li class="nav-item"><a class="nav-link ${isContact ? 'active' : ''}" ${isContact ? 'aria-current="page"' : ''} href="contact.html">Contact</a></li>
-            ${dashboardLinkHtml}
           </ul>
           <div class="navbar-actions">
-            <button class="btn-icon search-toggle" type="button" aria-label="Open search"><i class="fas fa-search" aria-hidden="true"></i></button>
-            <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><i class="fas fa-language" aria-hidden="true"></i></button>
             <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button">
               <i class="fas fa-moon" aria-hidden="true"></i>
               <i class="fas fa-sun" aria-hidden="true"></i>
             </button>
+            <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><span class="rtl-toggle-text" aria-hidden="true">RTL</span></button>
 
+            ${(user || admin) ? `
             <div class="dropdown d-inline-block" id="navbar-user-dropdown-wrapper">
               ${userDropdownHtml}
-            </div>
+            </div>` : authButtonsHtml}
 
             <a href="cart.html" class="btn-icon cart-btn" aria-label="Cart"><i class="fas fa-shopping-bag" aria-hidden="true"></i><span class="cart-count">0</span></a>
           </div>
@@ -193,7 +207,7 @@ window.DoodleNavbar = {
               <i class="fas fa-moon" aria-hidden="true"></i>
               <i class="fas fa-sun" aria-hidden="true"></i>
             </button>
-            <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><i class="fas fa-language" aria-hidden="true"></i></button>
+            <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><span class="rtl-toggle-text" aria-hidden="true">RTL</span></button>
             <button class="btn btn-outline-danger btn-sm admin-logout-action" id="navLogoutAction" type="button"><i class="fas fa-sign-out-alt me-1"></i>Logout</button>
           </div>
         </div>
@@ -229,7 +243,7 @@ window.DoodleNavbar = {
             <h5>Categories</h5><a href="products.html?category=Writing Supplies">Writing Supplies</a><a href="products.html?category=Notebooks %26 Journals">Notebooks</a><a href="products.html?category=Art %26 Craft">Art &amp; Craft</a><a href="products.html?category=School Essentials">School Essentials</a><a href="products.html?category=Office Supplies">Office Supplies</a>
           </div>
           <div class="col-6 col-lg-2 col-md-3">
-            <h5>Customer Support</h5><a href="contact.html">Contact Us</a><a href="contact.html">Shipping</a><a href="contact.html">Returns</a><a href="bulk-orders.html">Bulk Orders</a><a href="contact.html">FAQs</a>
+            <h5>Customer Support</h5><a href="contact.html">Contact Us</a><a href="shipping-delivery.html">Shipping</a><a href="returns.html">Returns</a><a href="bulk-orders.html">Bulk Orders</a><a href="faq.html">FAQs</a>
           </div>
           <div class="col-6 col-lg-2 col-md-6">
             <h5>Quick Links</h5><a href="about.html">About Us</a><a href="products.html">Shop All</a><a href="bundles.html">Bundles</a><a href="blog.html">Blog</a>

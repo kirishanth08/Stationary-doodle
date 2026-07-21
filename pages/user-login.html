@@ -18,22 +18,15 @@
   <link href="../assets/css/dark-mode.css" rel="stylesheet">
   <link href="../assets/css/rtl.css" rel="stylesheet">
   <link href="../assets/css/doodle-desk.css" rel="stylesheet">
+  <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+  <link rel="icon" type="image/png" href="../assets/images/favicon.png">
+  <link rel="apple-touch-icon" href="../assets/images/favicon.png">
 </head>
 
-<body class="auth-page">
+<body class="auth-page auth-page-standalone">
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- ========== MINIMAL AUTH HEADER (no full navbar) ========== -->
-  <header class="auth-minimal-header py-3">
-    <div class="container">
-      <a class="navbar-brand d-inline-flex align-items-center gap-2 text-decoration-none" href="index.html">
-        <img src="../assets/images/logo-mark.svg" alt="" class="brand-mark" aria-hidden="true" width="36" height="36">
-        <span class="brand-text">Doodle <span class="brand-accent">Desk</span></span>
-      </a>
-    </div>
-  </header>
-
-  <!-- ========== MAIN CONTENT ========== -->
+  <!-- ========== MAIN CONTENT (no full navbar — standalone auth logo inside the card) ========== -->
   <main id="main-content">
     <section class="auth-page-wrap section-padding auth-section">
       <div class="container">
@@ -41,6 +34,15 @@
           <div class="col-md-6 col-lg-5">
             <div class="card card-stationery auth-card p-4 shadow-sm border-0 rounded-4">
               <div class="text-center mb-4">
+                <a href="index.html" class="auth-logo d-inline-flex align-items-center gap-2 mx-auto mb-3">
+
+                  <img src="../assets/images/logo-mark.svg" alt="" class="brand-mark" aria-hidden="true" width="36" height="36">
+
+                  <span class="brand-text">
+                    Doodle <span class="brand-accent">Desk</span>
+                  </span>
+
+                </a>
                 <span class="auth-icon"><i class="fas fa-user" aria-hidden="true"></i></span>
                 <h2 class="h4 fw-bold mb-1">Welcome Back!</h2>
                 <p class="text-muted small">Access your profile and track order updates.</p>
@@ -81,24 +83,52 @@
                 <button type="submit" class="btn btn-primary-custom w-100 py-2.5 rounded-3 mb-3"><i
                     class="fas fa-sign-in-alt me-2"></i>Sign In</button>
 
-                <div class="auth-divider my-3">or continue with</div>
-
-                <div class="d-flex gap-2 mb-3">
-                  <button type="button" class="btn-social w-50"><i class="fab fa-google" aria-hidden="true"></i> Google</button>
-                  <button type="button" class="btn-social w-50"><i class="fab fa-apple" aria-hidden="true"></i> Apple</button>
-                </div>
-
                 <div class="auth-switch text-center mt-3">
                   <p class="small text-muted mb-0">Don't have an account? <a href="user-signup.html"
                       class="text-decoration-none text-primary-custom fw-bold">Sign Up</a></p>
                 </div>
               </form>
+
+              <div class="auth-divider my-4"><span>or continue with</span></div>
+
+              <div class="d-flex flex-column gap-2">
+                <button type="button" class="btn btn-social-auth w-100" id="googleSignInBtn">
+                  <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+                    <path fill="#4285F4"
+                      d="M17.64 9.2c0-.64-.06-1.25-.16-1.84H9v3.48h4.84a4.14 4.14 0 0 1-1.8 2.72v2.26h2.9c1.7-1.57 2.7-3.88 2.7-6.62z" />
+                    <path fill="#34A853"
+                      d="M9 18c2.43 0 4.47-.8 5.96-2.18l-2.9-2.26c-.8.54-1.83.86-3.06.86-2.35 0-4.34-1.59-5.05-3.72H.95v2.33A9 9 0 0 0 9 18z" />
+                    <path fill="#FBBC05"
+                      d="M3.95 10.7A5.4 5.4 0 0 1 3.66 9c0-.59.1-1.17.29-1.7V4.97H.95A9 9 0 0 0 0 9c0 1.45.35 2.83.95 4.03l3-2.33z" />
+                    <path fill="#EA4335"
+                      d="M9 3.58c1.32 0 2.51.46 3.44 1.35l2.58-2.58C13.46.89 11.43 0 9 0A9 9 0 0 0 .95 4.97l3 2.33C4.66 5.17 6.65 3.58 9 3.58z" />
+                  </svg>
+                  Continue with Google
+                </button>
+                <button type="button" class="btn btn-social-auth w-100" id="appleSignInBtn">
+                  <i class="fab fa-apple" aria-hidden="true"></i>
+                  Continue with Apple
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
   </main>
+
+  <!-- Dynamic Search Modal -->
+  <div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-body">
+          <form role="search" action="products.html">
+            <input type="search" class="form-control" placeholder="Search…" aria-label="Search">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../js/products.js"></script>
@@ -140,6 +170,17 @@
           toggleBtn.querySelector('i').classList.toggle('fa-eye-slash');
         });
       }
+
+      // Social sign-in (demo template — no real OAuth backend)
+      const googleBtn = document.getElementById('googleSignInBtn');
+      const appleBtn = document.getElementById('appleSignInBtn');
+      const notifySocial = (provider) => {
+        alertBox.className = 'alert alert-info';
+        alertBox.style.display = 'block';
+        alertBox.innerHTML = `<i class="fas fa-info-circle me-2"></i>${provider} sign-in is a demo action in this template — no live OAuth is connected.`;
+      };
+      if (googleBtn) googleBtn.addEventListener('click', () => notifySocial('Google'));
+      if (appleBtn) appleBtn.addEventListener('click', () => notifySocial('Apple'));
 
       // Submit Form
       const form = document.getElementById('loginForm');

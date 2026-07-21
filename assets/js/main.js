@@ -22,7 +22,8 @@
       '../js/auth.js',
       '../js/cart.js',
       '../js/search.js',
-      '../js/navbar.js'
+      '../js/navbar.js',
+      '../js/footer.js'
     ];
     let index = 0;
     function loadNext() {
@@ -158,8 +159,13 @@ function initRtlToggle() {
 
   const updateButtons = (dir) => {
     const label = dir === 'rtl' ? 'Switch to LTR' : 'Switch to RTL';
+    const text = dir === 'rtl' ? 'LTR' : 'RTL';
     toggleBtns.forEach((btn) => {
       btn.setAttribute('aria-label', label);
+      const textEl = btn.querySelector('.rtl-toggle-text');
+      if (textEl) {
+        textEl.textContent = text;
+      }
       if (dir === 'rtl') {
         btn.classList.add('rtl-active');
       } else {
