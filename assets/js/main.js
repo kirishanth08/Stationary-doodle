@@ -185,7 +185,11 @@ function initRtlToggle() {
     updateButtons(next);
   };
 
-  toggleBtns.forEach((btn) => btn.addEventListener('click', toggleDir));
+  toggleBtns.forEach((btn) => btn.addEventListener('click', (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    toggleDir();
+  }));
 }
 
 /* ============================================
