@@ -8,14 +8,14 @@
 }
 
 /* Content stays in English (LTR script), so the actual reading order
-       of each text run must stay ltr even while the block itself is
-       right-aligned above. Without this, the browser's bidi algorithm can
-       reorder trailing neutral punctuation (?, !, ), %, etc.) to the front
-       of the sentence instead of the end, e.g. "?What are your..." instead
-       of "What are your...?". unicode-bidi: plaintext detects each
-       element's own direction from its content (all-English → ltr) without
-       touching the inherited `direction` value that Bootstrap's logical
-       spacing/icon properties rely on elsewhere in this file. */
+     of each text run must stay ltr even while the block itself is
+     right-aligned above. Without this, the browser's bidi algorithm can
+     reorder trailing neutral punctuation (?, !, ), %, etc.) to the front
+     of the sentence instead of the end, e.g. "?What are your..." instead
+     of "What are your...?". unicode-bidi: plaintext detects each
+     element's own direction from its content (all-English → ltr) without
+     touching the inherited `direction` value that Bootstrap's logical
+     spacing/icon properties rely on elsewhere in this file. */
 [dir="rtl"] p,
 [dir="rtl"] span,
 [dir="rtl"] a,
@@ -31,7 +31,8 @@
 [dir="rtl"] input,
 [dir="rtl"] textarea,
 [dir="rtl"] select,
-[dir="rtl"] blockquote {
+[dir="rtl"] blockquote,
+[dir="rtl"] div {
   unicode-bidi: plaintext;
 }
 
@@ -46,8 +47,15 @@
   margin-left: 0;
 }
 
+/* NOTE: .navbar-controls is display:flex with the default
+     flex-direction: row, sitting inside <html dir="rtl"> (which the
+     browser resolves to direction: rtl). Flexbox's "row" axis already
+     follows the container's direction — so under RTL this mirrors on
+     its own with zero extra CSS. flex-direction: row-reverse on top of
+     that double-flips it back to plain LTR order. Set to row (i.e. left
+     as default) instead of row-reverse. */
 [dir="rtl"] .navbar-controls {
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 /* Footer RTL */
@@ -77,8 +85,9 @@
 }
 
 /* Contact info RTL */
+/* Same double-reversal issue as .navbar-controls above */
 [dir="rtl"] .contact-info-item {
-  flex-direction: row-reverse;
+  flex-direction: row;
   text-align: right;
 }
 
@@ -133,14 +142,14 @@
   padding-left: var(--bs-breadcrumb-item-padding-x);
 }
 
-/* Pagination RTL */
+/* Pagination RTL — same double-reversal issue as above */
 [dir="rtl"] .pagination {
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
-/* Quantity picker RTL */
+/* Quantity picker RTL — same double-reversal issue as above */
 [dir="rtl"] .quantity-picker {
-  flex-direction: row-reverse;
+  flex-direction: row;
 }
 
 /* Step cards RTL — no change needed, centered */
