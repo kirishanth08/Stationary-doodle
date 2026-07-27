@@ -32,8 +32,8 @@
 }
 
 /* --- Brand logo ---
-   Base styling is unscoped so the exact same logo badge renders anywhere
-   the .brand-mark markup is reused (navbar, footer, auth pages, etc). */
+     Base styling is unscoped so the exact same logo badge renders anywhere
+     the .brand-mark markup is reused (navbar, footer, auth pages, etc). */
 .brand-mark {
   display: inline-flex;
   align-items: center;
@@ -220,14 +220,14 @@
 }
 
 /* Bundles hero: lighten the overlay so the curated-supplies photo behind the
-   heading is actually visible instead of reading as a flat color. */
+     heading is actually visible instead of reading as a flat color. */
 .page-hero-bundles::before {
   background: linear-gradient(135deg, rgba(11, 31, 58, 0.55) 0%, rgba(15, 76, 129, 0.4) 100%);
 }
 
 /* Cart hero: same lightened treatment so the placeholder background image
-   stays visible behind the heading. Swap assets/images/cart-hero.webp for a
-   different photo any time — no CSS changes needed. */
+     stays visible behind the heading. Swap assets/images/cart-hero.webp for a
+     different photo any time — no CSS changes needed. */
 .page-hero-cart::before {
   background: linear-gradient(135deg, rgba(11, 31, 58, 0.55) 0%, rgba(15, 76, 129, 0.4) 100%);
 }
@@ -268,9 +268,9 @@
 }
 
 /* ============================================
-   Premium Storefront Refresh
-   Apple / Shopify inspired polish layer
-   ============================================ */
+     Premium Storefront Refresh
+     Apple / Shopify inspired polish layer
+     ============================================ */
 
 :root {
   --color-primary: #2563EB;
@@ -366,10 +366,10 @@ h6 {
 }
 
 /* About page "Our Story" heading sits in a left-aligned two-column layout
-   (not a centered .section-title block), so match the same heading scale
-   directly instead of wrapping it in .section-title (which would force
-   text-align:center and break the layout). Fixes font-size inconsistency
-   vs. the other About page section headings. */
+     (not a centered .section-title block), so match the same heading scale
+     directly instead of wrapping it in .section-title (which would force
+     text-align:center and break the layout). Fixes font-size inconsistency
+     vs. the other About page section headings. */
 #story-heading {
   color: var(--color-text);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -1023,11 +1023,28 @@ textarea:focus-visible,
   font-family: var(--font-heading);
   font-weight: 600;
   color: var(--color-primary-dark);
+  /* Reserve space on the end side so long questions never run into the
+       dropdown icon. The icon is taken out of flex flow below and pinned
+       at a fixed offset, so this padding is what actually keeps a gap. */
+  padding-right: 3rem;
 }
 
 .accordion-doodle .accordion-button:not(.collapsed) {
   background: rgba(15, 76, 129, 0.06);
   color: var(--color-primary);
+}
+
+/* Bootstrap positions the accordion icon with margin-left: auto inside a
+     flex row, so the gap between text and icon shrinks to nothing once a
+     question wraps close to the button's full width. Pinning the icon at
+     a fixed offset from the edge (instead of letting flex push it) keeps
+     a consistent gap regardless of question length. */
+.accordion-doodle .accordion-button::after {
+  position: absolute;
+  top: 50%;
+  right: 1.25rem;
+  transform: translateY(-50%);
+  margin-left: 0;
 }
 
 /* --- Support cards --- */
@@ -1321,8 +1338,8 @@ textarea:focus-visible,
 }
 
 /* Guarantee the CTA button always sits flush with the bottom of the card,
-   in a straight line across every card in the row, no matter how much
-   text (title/brand) sits above it. */
+     in a straight line across every card in the row, no matter how much
+     text (title/brand) sits above it. */
 .product-card .product-card-actions-bottom {
   margin-top: auto !important;
 }
@@ -1936,8 +1953,8 @@ body {
 }
 
 /* ===============================
-   Universal Doodle Desk Logo
-   =============================== */
+     Universal Doodle Desk Logo
+     =============================== */
 
 .navbar-brand,
 .auth-logo {
@@ -2080,7 +2097,7 @@ body {
   background: var(--color-secondary) !important;
   border-color: var(--color-secondary) !important;
   /* Always dark text on the gold/yellow background — var(--color-text) flips to
-     near-white in dark mode and breaks contrast, so this is intentionally fixed. */
+       near-white in dark mode and breaks contrast, so this is intentionally fixed. */
   color: #1F2937 !important;
 }
 
@@ -2351,8 +2368,13 @@ textarea:focus-visible,
   border-color: var(--color-primary);
 }
 
-.btn-social .fa-google { color: #EA4335; }
-.btn-social .fa-apple { color: #111827; }
+.btn-social .fa-google {
+  color: #EA4335;
+}
+
+.btn-social .fa-apple {
+  color: #111827;
+}
 
 /* Navbar Home Dropdown */
 
@@ -2380,8 +2402,8 @@ textarea:focus-visible,
 }
 
 /* ============================================
-   Trusted By Section
-============================================ */
+     Trusted By Section
+  ============================================ */
 
 /* Trusted Brands */
 
@@ -2454,9 +2476,9 @@ textarea:focus-visible,
 }
 
 /* =====================================================
-   AUTH LOGO
-   (Same look as navbar without affecting the navbar)
-   ===================================================== */
+     AUTH LOGO
+     (Same look as navbar without affecting the navbar)
+     ===================================================== */
 
 .auth-logo {
   display: inline-flex;
@@ -2503,8 +2525,8 @@ textarea:focus-visible,
 }
 
 /* =========================
-   Footer Logo
-========================= */
+     Footer Logo
+  ========================= */
 
 .footer-logo {
   display: inline-flex;
