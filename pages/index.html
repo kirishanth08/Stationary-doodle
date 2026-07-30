@@ -50,7 +50,17 @@
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link active" href="index.html" aria-current="page">Home</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active d-flex align-items-center" href="#" id="navHomeDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-current="page">
+              Home
+              <i class="fas fa-chevron-down nav-dropdown-icon" aria-hidden="true"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navHomeDropdown">
+              <li><a class="dropdown-item active" href="index.html">Home</a></li>
+              <li><a class="dropdown-item" href="home2.html">Home 2</a></li>
+            </ul>
+          </li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
           <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
@@ -66,7 +76,8 @@
               aria-hidden="true"></i><span class="cart-count">0</span></a>
           <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button"><i class="fas fa-moon"
               aria-hidden="true"></i><i class="fas fa-sun" aria-hidden="true"></i></button>
-          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><span class="rtl-toggle-text" aria-hidden="true">RTL</span></button>
+          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><span class="rtl-toggle-text"
+              aria-hidden="true">RTL</span></button>
         </div>
       </div>
     </div>

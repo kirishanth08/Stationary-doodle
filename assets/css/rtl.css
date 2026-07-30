@@ -8,14 +8,14 @@
 }
 
 /* Content stays in English (LTR script), so the actual reading order
-       of each text run must stay ltr even while the block itself is
-       right-aligned above. Without this, the browser's bidi algorithm can
-       reorder trailing neutral punctuation (?, !, ), %, etc.) to the front
-       of the sentence instead of the end, e.g. "?What are your..." instead
-       of "What are your...?". unicode-bidi: plaintext detects each
-       element's own direction from its content (all-English → ltr) without
-       touching the inherited `direction` value that Bootstrap's logical
-       spacing/icon properties rely on elsewhere in this file. */
+             of each text run must stay ltr even while the block itself is
+             right-aligned above. Without this, the browser's bidi algorithm can
+             reorder trailing neutral punctuation (?, !, ), %, etc.) to the front
+             of the sentence instead of the end, e.g. "?What are your..." instead
+             of "What are your...?". unicode-bidi: plaintext detects each
+             element's own direction from its content (all-English → ltr) without
+             touching the inherited `direction` value that Bootstrap's logical
+             spacing/icon properties rely on elsewhere in this file. */
 [dir="rtl"] p,
 [dir="rtl"] span,
 [dir="rtl"] a,
@@ -48,12 +48,12 @@
 }
 
 /* NOTE: .navbar-controls is display:flex with the default
-       flex-direction: row, sitting inside <html dir="rtl"> (which the
-       browser resolves to direction: rtl). Flexbox's "row" axis already
-       follows the container's direction — so under RTL this mirrors on
-       its own with zero extra CSS. flex-direction: row-reverse on top of
-       that double-flips it back to plain LTR order. Set to row (i.e. left
-       as default) instead of row-reverse. */
+             flex-direction: row, sitting inside <html dir="rtl"> (which the
+             browser resolves to direction: rtl). Flexbox's "row" axis already
+             follows the container's direction — so under RTL this mirrors on
+             its own with zero extra CSS. flex-direction: row-reverse on top of
+             that double-flips it back to plain LTR order. Set to row (i.e. left
+             as default) instead of row-reverse. */
 [dir="rtl"] .navbar-controls {
   flex-direction: row;
 }
@@ -133,6 +133,12 @@
 
 [dir="rtl"] .newsletter-form .btn-secondary-custom {
   border-radius: var(--radius-md) 0 0 var(--radius-md);
+}
+
+/* Contact form: Phone field stays pinned to the right in both
+         directions instead of mirroring with the rest of the row */
+[dir="rtl"] .contact-phone-field {
+  order: -1;
 }
 
 /* Breadcrumb RTL */
@@ -309,10 +315,17 @@
   padding-right: 0.75rem !important;
 }
 
+/* Auth header (login page): the logo pill and the avatar icon swap
+       places automatically because .auth-header-row uses the default
+       "row" flex-direction, which already flows end-to-start under
+       dir="rtl" — no row-reverse needed. Adding row-reverse here used to
+       cancel that native mirroring out, which is why the logo/avatar
+       appeared stuck in the same spot in both directions. */
+
 /* FAQ accordion icon RTL — mirrors the LTR fix in doodle-desk.css, which
-     pins the dropdown icon at a fixed offset (instead of a flex auto-margin)
-     so it keeps a consistent gap from the question text. In RTL the icon
-     moves to the start (left) side, so the reserved padding flips too. */
+           pins the dropdown icon at a fixed offset (instead of a flex auto-margin)
+           so it keeps a consistent gap from the question text. In RTL the icon
+           moves to the start (left) side, so the reserved padding flips too. */
 [dir="rtl"] .accordion-doodle .accordion-button {
   padding-right: 1.25rem;
   padding-left: 3rem;
@@ -321,4 +334,39 @@
 [dir="rtl"] .accordion-doodle .accordion-button::after {
   right: auto;
   left: 1.25rem;
+}
+
+/* Auth page logo */
+[dir="rtl"] .auth-logo {
+  display: inline-flex !important;
+  flex-direction: row !important;
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+}
+
+[dir="rtl"] .auth-logo .brand-mark {
+  order: 0 !important;
+}
+
+[dir="rtl"] .auth-logo .brand-text {
+  order: 1 !important;
+}
+
+/* Sign In / Sign Up / Create Account buttons on auth pages: keep the
+       icon glued to the left of the label, with the same gap, in both
+       directions. direction:ltr keeps the icon-then-text order from
+       reversing; the .me-2 override below is needed separately because
+       the sitewide [dir="rtl"] .me-2 rule (further up this file) flips
+       that spacing utility to margin-left for every element on the page,
+       button icons included — direction alone doesn't stop it since
+       margin-left/margin-right are physical properties, not logical
+       ones, so they ignore direction. */
+[dir="rtl"] .auth-card button[type="submit"] {
+  direction: ltr !important;
+  unicode-bidi: isolate !important;
+}
+
+[dir="rtl"] .auth-card button[type="submit"] .me-2 {
+  margin-right: 0.5rem !important;
+  margin-left: 0 !important;
 }

@@ -26,6 +26,14 @@
 <body class="auth-page auth-page-standalone">
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
+  <!-- Theme (dark/light) + direction (RTL/LTR) toggles -->
+  <div class="auth-topbar">
+    <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button"><i class="fas fa-moon"
+        aria-hidden="true"></i><i class="fas fa-sun" aria-hidden="true"></i></button>
+    <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><span class="rtl-toggle-text"
+        aria-hidden="true">RTL</span></button>
+  </div>
+
   <!-- ========== MAIN CONTENT (no full navbar — standalone auth logo inside the card) ========== -->
   <main id="main-content">
     <section class="auth-page-wrap section-padding auth-section">
@@ -34,16 +42,19 @@
           <div class="col-md-6 col-lg-5">
             <div class="card card-stationery auth-card p-4 shadow-sm border-0 rounded-4">
               <div class="text-center mb-4">
-                <a href="index.html" class="navbar-brand d-inline-flex align-items-center gap-2 mx-auto mb-3">
+                <div class="auth-header-row mb-3">
+                  <a href="index.html" class="auth-logo">
 
-                  <img src="../assets/images/logo-mark.svg" alt="" class="brand-mark" aria-hidden="true" width="36" height="36">
+                    <img src="../assets/images/logo-mark.svg" alt="" class="brand-mark" aria-hidden="true" width="36"
+                      height="36">
 
-                  <span class="brand-text">
-                    Doodle <span class="brand-accent">Desk</span>
-                  </span>
+                    <span class="brand-text">
+                      Doodle <span class="brand-accent">Desk</span>
+                    </span>
 
-                </a>
-                <span class="auth-icon"><i class="fas fa-user-plus" aria-hidden="true"></i></span>
+                  </a>
+                  <span class="auth-icon"><i class="fas fa-user-plus" aria-hidden="true"></i></span>
+                </div>
                 <h2 class="h4 fw-bold mb-1">Create Account</h2>
                 <p class="text-muted small">Register to start saving stationery to your wishlist.</p>
               </div>

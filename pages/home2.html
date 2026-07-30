@@ -36,8 +36,17 @@
       </button>
       <div class="collapse navbar-collapse" id="mainNav">
         <ul class="navbar-nav mx-lg-auto mb-2 mb-lg-0">
-          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-          <li class="nav-item"><a class="nav-link active" href="home2.html" aria-current="page">Home 2</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active d-flex align-items-center" href="#" id="navHomeDropdown"
+              role="button" data-bs-toggle="dropdown" aria-expanded="false" aria-current="page">
+              Home
+              <i class="fas fa-chevron-down nav-dropdown-icon" aria-hidden="true"></i>
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navHomeDropdown">
+              <li><a class="dropdown-item" href="index.html">Home</a></li>
+              <li><a class="dropdown-item active" href="home2.html">Home 2</a></li>
+            </ul>
+          </li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="categories.html">Categories</a></li>
           <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
@@ -51,7 +60,8 @@
               aria-hidden="true"></i></button>
           <button class="btn-icon theme-toggle" aria-label="Switch to dark mode" type="button"><i class="fas fa-moon"
               aria-hidden="true"></i><i class="fas fa-sun" aria-hidden="true"></i></button>
-          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><span class="rtl-toggle-text" aria-hidden="true">RTL</span></button>
+          <button class="btn-icon rtl-toggle" aria-label="Switch to RTL" type="button"><span class="rtl-toggle-text"
+              aria-hidden="true">RTL</span></button>
           <a href="user-login.html" class="btn btn-outline-custom btn-sm auth-nav-btn">Login</a>
           <a href="user-signup.html" class="btn btn-primary-custom btn-sm auth-nav-btn">Sign Up</a>
           <a href="cart.html" class="btn-icon cart-btn" aria-label="Cart"><i class="fas fa-shopping-bag"
@@ -63,17 +73,70 @@
 
   <main id="main-content">
 
-    <!-- ========== FULL-WIDTH IMAGE HERO (layout differs from Home 1's split hero) ========== -->
-    <section class="page-hero" aria-labelledby="home2-hero-heading"
-      style="background-image: url('../assets/images/home2-hero.webp');">
-      <div class="container text-center">
-        <span class="hero-badge"><i class="fas fa-star" aria-hidden="true"></i> Premium Stationery</span>
-        <h1 id="home2-hero-heading">Crafted for Every Desk, Every Story</h1>
-        <p class="lead text-white opacity-75 mb-4">A second take on our homepage — same premium catalog, a more
-          editorial layout.</p>
-        <div class="d-flex flex-wrap gap-3 justify-content-center">
-          <a href="products.html" class="btn btn-secondary-custom btn-lg">Shop Collection</a>
-          <a href="bundles.html" class="btn btn-outline-custom text-white btn-lg">Explore Bundles</a>
+    <!-- ========== REDEVELOPED HERO — full-bleed photo, glow accents, search, floating trust panel ========== -->
+    <section class="home2-hero" aria-labelledby="home2-hero-heading">
+      <div class="home2-hero-bg" style="background-image: url('../assets/images/home2-hero.webp');"></div>
+      <span class="home2-hero-glow home2-hero-glow--gold" aria-hidden="true"></span>
+      <span class="home2-hero-glow home2-hero-glow--blue" aria-hidden="true"></span>
+      <div class="container">
+        <div class="home2-hero-content text-center">
+          <span class="hero-badge"><i class="fas fa-star" aria-hidden="true"></i> Rated 4.9/5 by 48,000+
+            Customers</span>
+          <h1 id="home2-hero-heading" class="mt-3">Crafted for Every Desk,<br class="d-none d-md-block"> Every
+            Story</h1>
+          <p class="lead text-white opacity-75 mb-4">Premium notebooks, pens, art supplies and curated bundles —
+            handpicked from the world's finest stationery brands and delivered to your door.</p>
+          <div class="d-flex flex-wrap gap-3 justify-content-center">
+            <a href="products.html" class="btn btn-secondary-custom btn-lg">Shop Collection <i
+                class="fas fa-arrow-right ms-1" aria-hidden="true"></i></a>
+            <a href="bundles.html" class="btn btn-outline-custom text-white btn-lg">Explore Bundles</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FLOATING TRUST PANEL ========== -->
+    <section class="home2-hero-trust reveal-on-scroll" aria-label="Why shop with Doodle Desk">
+      <div class="container">
+        <div class="home2-trust-panel">
+          <div class="row g-3 g-lg-4">
+            <div class="col-6 col-lg-3">
+              <div class="home2-trust-item">
+                <i class="fas fa-truck-fast" aria-hidden="true"></i>
+                <div>
+                  <strong>Free Shipping</strong>
+                  <span>On orders over $50</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="home2-trust-item">
+                <i class="fas fa-lock" aria-hidden="true"></i>
+                <div>
+                  <strong>Secure Checkout</strong>
+                  <span>256-bit encryption</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="home2-trust-item">
+                <i class="fas fa-rotate-left" aria-hidden="true"></i>
+                <div>
+                  <strong>30-Day Returns</strong>
+                  <span>No questions asked</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="home2-trust-item">
+                <i class="fas fa-headset" aria-hidden="true"></i>
+                <div>
+                  <strong>24/7 Support</strong>
+                  <span>Real humans, always</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -126,6 +189,40 @@
       </div>
     </section>
 
+    <!-- ========== HOW IT WORKS ========== -->
+    <section class="section-padding reveal-on-scroll" aria-labelledby="home2-how-heading">
+      <div class="container">
+        <div class="section-title text-center">
+          <h2 id="home2-how-heading">How It Works</h2>
+          <p>From browsing to your doorstep in three simple steps.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-4">
+            <div class="step-card">
+              <div class="step-number">1</div>
+              <h3 class="h5">Browse &amp; Choose</h3>
+              <p>Explore curated categories and bundles to find exactly what your desk, classroom, or studio
+                needs.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="step-card">
+              <div class="step-number">2</div>
+              <h3 class="h5">Add to Cart &amp; Checkout</h3>
+              <p>Secure checkout with saved addresses, multiple payment options, and instant order confirmation.</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="step-card">
+              <div class="step-number">3</div>
+              <h3 class="h5">Fast Doorstep Delivery</h3>
+              <p>Orders ship within 24 hours and arrive carefully packed — free on orders over $50.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ========== STATS BAND ========== -->
     <section class="stats-section reveal-on-scroll" aria-labelledby="home2-stats-heading">
       <div class="container">
@@ -159,6 +256,47 @@
       </div>
     </section>
 
+    <!-- ========== WHY CHOOSE US ========== -->
+    <section class="section-padding section-bg reveal-on-scroll" aria-labelledby="home2-why-heading">
+      <div class="container">
+        <div class="section-title text-center">
+          <h2 id="home2-why-heading">Why Shop at Doodle Desk</h2>
+          <p>The details that make everyday supplies feel a little more special.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <div class="icon-wrap"><i class="fas fa-gem" aria-hidden="true"></i></div>
+              <h3 class="h5">Handpicked Brands</h3>
+              <p>We partner directly with Pilot, Staedtler, Faber-Castell, and Moleskine for authentic, tested
+                quality.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <div class="icon-wrap"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+              <h3 class="h5">Loved by Educators</h3>
+              <p>Trusted by 320+ schools and universities for classroom kits, bulk orders, and lab supplies.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <div class="icon-wrap"><i class="fas fa-leaf" aria-hidden="true"></i></div>
+              <h3 class="h5">Thoughtfully Sourced</h3>
+              <p>Recycled paper stocks, refillable pens, and low-waste packaging across our core collections.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="icon-box">
+              <div class="icon-wrap"><i class="fas fa-headset" aria-hidden="true"></i></div>
+              <h3 class="h5">Dedicated Support</h3>
+              <p>A real team ready to help with orders, bundles, and bulk pricing — every day of the week.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ========== BUNDLE SPOTLIGHT (editorial split layout, not a grid) ========== -->
     <section class="section-padding reveal-on-scroll" aria-labelledby="home2-spotlight-heading">
       <div class="container">
@@ -179,63 +317,172 @@
       </div>
     </section>
 
-    <!-- ========== SUCCESS STORY BAND ========== -->
-    <section class="section-padding section-bg reveal-on-scroll" aria-labelledby="home2-story-heading">
+    <!-- ========== WORKSPACE GALLERY ========== -->
+    <section class="section-padding reveal-on-scroll" aria-labelledby="home2-gallery-heading">
       <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8">
-            <div class="success-story">
-              <h2 id="home2-story-heading" class="h4 mb-3">What Our Customers Say</h2>
-              <blockquote>"The quality is consistently excellent and reordering supplies for our whole studio takes
-                minutes, not hours."</blockquote>
-              <p class="mb-0 fw-semibold">— A Doodle Desk customer</p>
+        <div class="section-title text-center">
+          <h2 id="home2-gallery-heading">Inside a Doodle Desk Workspace</h2>
+          <p>A glimpse of how our supplies show up on real desks, in real classrooms and studios.</p>
+        </div>
+        <div class="row g-4 gallery-grid">
+          <div class="col-md-6 col-lg-3">
+            <div class="gallery-item">
+              <img src="../assets/images/office_with_less_peole_202607021117.jpeg"
+                alt="Minimalist office desk with premium stationery supplies" width="800" height="520" loading="lazy">
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="gallery-item">
+              <img src="../assets/images/office_with_less_peole_202607021117 (1).jpeg"
+                alt="Modern corporate office desk set up with notebooks and pens" width="800" height="520"
+                loading="lazy">
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="gallery-item">
+              <img src="../assets/images/office_with_less_peole_202607021117 (2).jpeg"
+                alt="Creative workspace with art materials and sketchbooks" width="800" height="520" loading="lazy">
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="gallery-item">
+              <img src="../assets/images/office_with_less_peole_202607021117 (3).jpeg"
+                alt="Organized desk with planners and desktop accessories" width="800" height="520" loading="lazy">
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ========== BRAND STRIP ========== -->
-    <section class="section-padding reveal-on-scroll" aria-label="Featured brands">
-      <div class="container text-center">
-
-        <h2 class="text-muted mb-4">Featuring materials from brands we trust</h2>
-        <div class="client-logos">
-          <img src="../assets/images/brands/staedtler.png" alt="Staedtler" loading="lazy">
-          <img src="../assets/images/brands/pilot.png" alt="Pilot" loading="lazy">
-          <img src="../assets/images/brands/moleskine.png" alt="Moleskine" loading="lazy">
-          <img src="../assets/images/brands/fiskars.png" alt="Fiskars" loading="lazy">
-          <img src="../assets/images/brands/post-it.png" alt="Post-it" loading="lazy">
-          <img src="../assets/images/brands/elmers.png" alt="Elmer's" loading="lazy">
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== NEWSLETTER BAND ========== -->
-    <section class="section-padding newsletter-section reveal-on-scroll" aria-labelledby="home2-newsletter-heading"
-      style="background-image: url('../assets/images/unsplash_c3838b80f64b86091bb43c5b3bf39426.webp');">
+    <!-- ========== TESTIMONIALS GRID ========== -->
+    <section class="section-padding section-bg reveal-on-scroll" aria-labelledby="home2-story-heading">
       <div class="container">
-        <div class="row justify-content-center text-center">
-          <div class="col-lg-7">
-            <span class="hero-badge"><i class="fas fa-envelope-open-text" aria-hidden="true"></i> Stay in the
-              Loop</span>
-            <h2 id="home2-newsletter-heading" class="mt-3">Get New Arrivals &amp; Bundle Deals in Your Inbox</h2>
-            <p class="mb-4">Join our newsletter for early access to restocks, seasonal bundles, and members-only
-              discounts. No spam, just good stationery.</p>
-            <form class="row g-2 justify-content-center needs-validation" action="404.html" method="get" novalidate>
-              <div class="col-sm-7">
-                <label for="home2-newsletter-email" class="visually-hidden">Email address</label>
-                <input type="email" class="form-control form-control-lg" id="home2-newsletter-email"
-                  placeholder="Your email address" aria-label="Email for newsletter" required>
+        <div class="section-title text-center">
+          <h2 id="home2-story-heading">What Our Customers Say</h2>
+          <p>Real feedback from students, educators, and creative teams.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <article class="testimonial-card">
+              <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <blockquote>&ldquo;The quality is unmatched. My notebooks feel luxurious and my desk looks more
+                elegant than ever.&rdquo;</blockquote>
+              <div class="testimonial-author">
+                <img src="../assets/images/unsplash_4891d2fe8f1043a5722555d386437fb2.webp" alt="Customer portrait"
+                  loading="lazy">
+                <div>
+                  <div class="name">Nadia Flores</div>
+                  <div class="role">Designer</div>
+                </div>
               </div>
-              <div class="col-sm-auto">
-                <button type="submit" class="btn btn-secondary-custom btn-lg w-100">Subscribe</button>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="testimonial-card">
+              <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star"></i></div>
+              <blockquote>&ldquo;We ordered a complete project kit for our studio and everything arrived beautifully
+                packed and on time.&rdquo;</blockquote>
+              <div class="testimonial-author">
+                <img src="../assets/images/unsplash_0be04c9d69807dfbbe3188f501969d28.webp" alt="Customer portrait"
+                  loading="lazy">
+                <div>
+                  <div class="name">Marcus Hill</div>
+                  <div class="role">Creative Director</div>
+                </div>
               </div>
-            </form>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="testimonial-card">
+              <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i
+                  class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+              <blockquote>&ldquo;My students love the quality of the materials. It feels like a premium classroom
+                upgrade.&rdquo;</blockquote>
+              <div class="testimonial-author">
+                <img src="../assets/images/unsplash_3cc5e0ce4552ea792fdda6feb673ae7a.webp" alt="Customer portrait"
+                  loading="lazy">
+                <div>
+                  <div class="name">Elena Brooks</div>
+                  <div class="role">Educator</div>
+                </div>
+              </div>
+            </article>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- ========== LATEST FROM THE BLOG ========== -->
+    <section class="section-padding reveal-on-scroll" aria-labelledby="home2-blog-heading">
+      <div class="container">
+        <div class="section-title text-center">
+          <h2 id="home2-blog-heading">Latest From the Blog</h2>
+          <p>Tips, guides, and ideas for getting more out of your supplies.</p>
+        </div>
+        <div class="row g-4">
+          <div class="col-md-6 col-lg-4">
+            <article class="card card-stationery blog-card h-100">
+              <div class="card-img-wrap"><a href="blog-details.html?post=study-tips"><img
+                    src="../assets/images/10_Study_Tips_Work_202607021511.jpeg" alt="Study tips article" width="600"
+                    height="400" loading="lazy"></a></div>
+              <div class="card-body">
+                <span class="badge-brand">Study Tips</span>
+                <h3 class="card-title h6"><a href="blog-details.html?post=study-tips">10 Study Tips That Actually
+                    Work</a></h3>
+                <p class="blog-meta small text-muted">Maria Garcia &middot; June 12, 2026</p>
+                <a href="blog-details.html?post=study-tips" class="btn btn-primary-custom btn-sm">Read More</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="card card-stationery blog-card h-100">
+              <div class="card-img-wrap"><a href="blog-details.html?post=desk-planner"><img
+                    src="../assets/images/Office_Productivity_Bundle_Planner_2K_202607021041.jpeg"
+                    alt="Productivity planner" width="600" height="400" loading="lazy"></a></div>
+              <div class="card-body">
+                <span class="badge-brand">Productivity</span>
+                <h3 class="card-title h6"><a href="blog-details.html?post=desk-planner">The Ultimate Desk Planner
+                    Setup</a></h3>
+                <p class="blog-meta small text-muted">James Wilson &middot; June 8, 2026</p>
+                <a href="blog-details.html?post=desk-planner" class="btn btn-primary-custom btn-sm">Read More</a>
+              </div>
+            </article>
+          </div>
+          <div class="col-md-6 col-lg-4">
+            <article class="card card-stationery blog-card h-100">
+              <div class="card-img-wrap"><a href="blog-details.html?post=desk-organization"><img
+                    src="../assets/images/Desk_Organization_on_Budget_202607021514.jpeg" alt="Office organization"
+                    width="600" height="400" loading="lazy"></a></div>
+              <div class="card-body">
+                <span class="badge-brand">Office Organization</span>
+                <h3 class="card-title h6"><a href="blog-details.html?post=desk-organization">Desk Organization on a
+                    Budget</a></h3>
+                <p class="blog-meta small text-muted">Sarah Chen &middot; May 28, 2026</p>
+                <a href="blog-details.html?post=desk-organization" class="btn btn-primary-custom btn-sm">Read
+                  More</a>
+              </div>
+            </article>
+          </div>
+        </div>
+        <div class="text-center mt-4"><a href="blog.html" class="btn btn-outline-custom">Visit the Blog</a></div>
+      </div>
+    </section>
+
+    <!-- ========== BULK ORDERS CTA BANNER ========== -->
+    <section class="section-padding section-bg reveal-on-scroll" aria-labelledby="home2-bulk-cta-heading">
+      <div class="container">
+        <div class="cta-banner text-center">
+          <h2 id="home2-bulk-cta-heading">Bulk Orders for Schools &amp; Offices</h2>
+          <p class="mb-4">Volume pricing on premium supplies for classrooms, universities, and corporate teams
+            nationwide.</p>
+          <a href="bulk-orders.html" class="btn btn-secondary-custom btn-lg">Request a Bulk Quote</a>
+        </div>
+      </div>
+    </section>
+
+
 
   </main>
 

@@ -70,31 +70,23 @@
   background-color: rgba(255, 214, 0, 0.1);
 }
 
-[data-theme="dark"] .navbar-stationery .navbar-brand,
-[data-theme="dark"] .navbar-stationery .brand-text {
-  color: #FFFFFF !important;
-  text-shadow: none !important;
-  box-shadow: none !important;
+/* NOTE: The brand *mark* (icon box) and the "Desk" accent word are
+   intentionally NOT themed here — they use one fixed, universal appearance
+   in every mode (light, dark, RTL, LTR); see the "Universal Doodle Desk
+   Logo" rules in doodle-desk.css. The pill container and "Doodle" wordmark,
+   however, need an explicit dark-mode rule below to guarantee they render
+   exactly the same as in light mode — same cream pill, same dark brand
+   text — instead of blending into the dark navbar. */
+[data-theme="dark"] .navbar-brand,
+[data-theme="dark"] .auth-logo {
+  background: #FFF3B8 !important;
+  border: 1px solid #F5E39A !important;
+  box-shadow: 0 8px 22px rgba(255, 214, 0, .18) !important;
 }
 
-[data-theme="dark"] .navbar-stationery .brand-accent {
-  color: #FFFFFF !important;
-  text-shadow: none !important;
-}
-
-[data-theme="dark"] .navbar-stationery .navbar-brand:hover,
-[data-theme="dark"] .navbar-stationery .navbar-brand:focus,
-[data-theme="dark"] .navbar-stationery .navbar-brand:hover .brand-text,
-[data-theme="dark"] .navbar-stationery .navbar-brand:hover .brand-accent {
-  background: transparent !important;
-  color: #FFFFFF !important;
-  text-shadow: none !important;
-  box-shadow: none !important;
-}
-
-[data-theme="dark"] .navbar-stationery .brand-mark {
-  box-shadow: none !important;
-  text-shadow: none !important;
+[data-theme="dark"] .navbar-brand .brand-text,
+[data-theme="dark"] .auth-logo .brand-text {
+  color: #1F2937 !important;
 }
 
 /* Hero & Header sections dark mode */
@@ -123,6 +115,25 @@
 
 [data-theme="dark"] .stat-card {
   background: rgba(255, 255, 255, 0.05);
+}
+
+/* Home 2 hero trust panel — the panel keeps a solid white card look even in
+   dark mode (it sits over a photographic hero), so force dark, readable
+   text/icon colors instead of inheriting the page's light --color-text. */
+[data-theme="dark"] .home2-trust-panel {
+  background: #fff;
+}
+
+[data-theme="dark"] .home2-trust-item strong {
+  color: #1A2332;
+}
+
+[data-theme="dark"] .home2-trust-item span {
+  color: #64748B;
+}
+
+[data-theme="dark"] .home2-hero-search input {
+  color: #1A2332;
 }
 
 /* Base Cards & Components in dark mode (override white background gradients from style.css) */
@@ -159,6 +170,23 @@
 
 [data-theme="dark"] .btn-secondary-custom:hover,
 [data-theme="dark"] .btn-secondary-custom:focus {
+  color: #1A1300 !important;
+}
+
+/* Footer Newsletter "Subscribe" CTA: pin down background + text color with high
+   specificity so this button can never be washed out or blended into the dark
+   footer background, regardless of load order with other stylesheets. */
+[data-theme="dark"] .footer-stationery .footer-newsletter .btn-secondary-custom {
+  background-color: var(--color-secondary) !important;
+  border-color: var(--color-secondary) !important;
+  color: #1A1300 !important;
+  opacity: 1 !important;
+}
+
+[data-theme="dark"] .footer-stationery .footer-newsletter .btn-secondary-custom:hover,
+[data-theme="dark"] .footer-stationery .footer-newsletter .btn-secondary-custom:focus {
+  background-color: var(--color-secondary-dark) !important;
+  border-color: var(--color-secondary-dark) !important;
   color: #1A1300 !important;
 }
 
@@ -263,6 +291,20 @@
 [data-theme="dark"] .accordion-doodle .accordion-body {
   background: var(--color-card);
   color: var(--color-text);
+}
+
+/* The FAQ chevron (Bootstrap's .accordion-button::after) is a background-image
+   SVG with a hardcoded dark stroke (#212529 collapsed / #052c65 expanded).
+   That's invisible against the dark button background above, so swap in
+   light-colored versions of the same chevron for this accordion. */
+[data-theme="dark"] .accordion-doodle .accordion-button::after {
+  --bs-accordion-btn-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23E8EDF4' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M2 5L8 11L14 5'/%3e%3c/svg%3e");
+  background-image: var(--bs-accordion-btn-icon);
+}
+
+[data-theme="dark"] .accordion-doodle .accordion-button:not(.collapsed)::after {
+  --bs-accordion-btn-active-icon: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23D4AF37' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M2 5L8 11L14 5'/%3e%3c/svg%3e");
+  background-image: var(--bs-accordion-btn-active-icon);
 }
 
 [data-theme="dark"] .accordion-doodle .accordion-body a {
@@ -422,6 +464,14 @@
 
 [data-theme="dark"] .footer-stationery a:hover {
   color: var(--color-secondary) !important;
+}
+
+/* Social icons sit on a var(--color-secondary) circle on hover (see style.css
+   .footer-stationery .social-links a:hover). The generic rule above would set
+   the icon color to that same gold, making it invisible. Override with a
+   darker, contrasting color specifically for the social icons. */
+[data-theme="dark"] .footer-stationery .social-links a:hover {
+  color: #2D2D2D !important;
 }
 
 [data-theme="dark"] .btn-outline-custom {
@@ -672,7 +722,6 @@
   box-shadow: 0 14px 34px rgba(2, 6, 23, 0.38) !important;
 }
 
-[data-theme="dark"] .navbar-admin .navbar-brand,
 [data-theme="dark"] .navbar-admin .btn-icon {
   background: rgba(255, 255, 255, 0.07) !important;
   border-color: rgba(226, 232, 240, 0.16) !important;
@@ -704,3 +753,23 @@
 .dark-mode .navbar-toggler-icon {
   filter: invert(1);
 } */
+
+/* Keep logo identical in Light & Dark mode */
+/* Keep the logo exactly the same in dark mode */
+/* =====================================================
+   Keep auth logo pill identical in Dark Mode
+   ===================================================== */
+
+[data-theme="dark"] .auth-logo {
+  background: #FFF3BF !important;
+  border: 1px solid #FFE082 !important;
+  box-shadow: 0 8px 24px rgba(255, 214, 0, 0.18) !important;
+}
+
+[data-theme="dark"] .auth-logo .brand-text {
+  color: #1F2937 !important;
+}
+
+[data-theme="dark"] .auth-logo .brand-accent {
+  color: #1565C0 !important;
+}
