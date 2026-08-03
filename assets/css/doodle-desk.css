@@ -32,8 +32,8 @@
 }
 
 /* --- Brand logo ---
-           Base styling is unscoped so the exact same logo badge renders anywhere
-           the .brand-mark markup is reused (navbar, footer, auth pages, etc). */
+               Base styling is unscoped so the exact same logo badge renders anywhere
+               the .brand-mark markup is reused (navbar, footer, auth pages, etc). */
 .brand-mark {
   display: inline-flex;
   align-items: center;
@@ -220,14 +220,14 @@
 }
 
 /* Bundles hero: lighten the overlay so the curated-supplies photo behind the
-           heading is actually visible instead of reading as a flat color. */
+               heading is actually visible instead of reading as a flat color. */
 .page-hero-bundles::before {
   background: linear-gradient(135deg, rgba(11, 31, 58, 0.55) 0%, rgba(15, 76, 129, 0.4) 100%);
 }
 
 /* Cart hero: same lightened treatment so the placeholder background image
-           stays visible behind the heading. Swap assets/images/cart-hero.webp for a
-           different photo any time — no CSS changes needed. */
+               stays visible behind the heading. Swap assets/images/cart-hero.webp for a
+               different photo any time — no CSS changes needed. */
 .page-hero-cart::before {
   background: linear-gradient(135deg, rgba(11, 31, 58, 0.55) 0%, rgba(15, 76, 129, 0.4) 100%);
 }
@@ -268,9 +268,9 @@
 }
 
 /* ============================================
-           Premium Storefront Refresh
-           Apple / Shopify inspired polish layer
-           ============================================ */
+               Premium Storefront Refresh
+               Apple / Shopify inspired polish layer
+               ============================================ */
 
 :root {
   --color-primary: #2563EB;
@@ -366,10 +366,10 @@ h6 {
 }
 
 /* About page "Our Story" heading sits in a left-aligned two-column layout
-           (not a centered .section-title block), so match the same heading scale
-           directly instead of wrapping it in .section-title (which would force
-           text-align:center and break the layout). Fixes font-size inconsistency
-           vs. the other About page section headings. */
+               (not a centered .section-title block), so match the same heading scale
+               directly instead of wrapping it in .section-title (which would force
+               text-align:center and break the layout). Fixes font-size inconsistency
+               vs. the other About page section headings. */
 #story-heading {
   color: var(--color-text);
   font-size: clamp(2rem, 4vw, 3rem);
@@ -1022,8 +1022,8 @@ textarea:focus-visible,
   font-weight: 600;
   color: var(--color-primary-dark);
   /* Reserve space on the end side so long questions never run into the
-             dropdown icon. The icon is taken out of flex flow below and pinned
-             at a fixed offset, so this padding is what actually keeps a gap. */
+                 dropdown icon. The icon is taken out of flex flow below and pinned
+                 at a fixed offset, so this padding is what actually keeps a gap. */
   padding-right: 3rem;
 }
 
@@ -1033,10 +1033,10 @@ textarea:focus-visible,
 }
 
 /* Bootstrap positions the accordion icon with margin-left: auto inside a
-           flex row, so the gap between text and icon shrinks to nothing once a
-           question wraps close to the button's full width. Pinning the icon at
-           a fixed offset from the edge (instead of letting flex push it) keeps
-           a consistent gap regardless of question length. */
+               flex row, so the gap between text and icon shrinks to nothing once a
+               question wraps close to the button's full width. Pinning the icon at
+               a fixed offset from the edge (instead of letting flex push it) keeps
+               a consistent gap regardless of question length. */
 .accordion-doodle .accordion-button::after {
   position: absolute;
   top: 50%;
@@ -1336,8 +1336,8 @@ textarea:focus-visible,
 }
 
 /* Guarantee the CTA button always sits flush with the bottom of the card,
-           in a straight line across every card in the row, no matter how much
-           text (title/brand) sits above it. */
+               in a straight line across every card in the row, no matter how much
+               text (title/brand) sits above it. */
 .product-card .product-card-actions-bottom {
   margin-top: auto !important;
 }
@@ -1951,20 +1951,20 @@ body {
 }
 
 /* ===============================
-           Universal Doodle Desk Logo
-           One fixed appearance everywhere: light mode, dark mode, RTL, LTR.
-           !important is used deliberately so nothing else (theme rules, more
-           specific selectors, etc.) can make the logo's colors shift between
-           modes.
-           =============================== */
+               Universal Doodle Desk Logo
+               One fixed appearance everywhere: light mode, dark mode, RTL, LTR.
+               !important is used deliberately so nothing else (theme rules, more
+               specific selectors, etc.) can make the logo's colors shift between
+               modes.
+               =============================== */
 
 .navbar-brand,
 .auth-logo {
   display: inline-flex !important;
   align-items: center;
-  gap: 12px !important;
+  gap: 8px !important;
 
-  padding: 12px 20px !important;
+  padding: 8px 14px !important;
 
   background: #FFF3B8 !important;
 
@@ -1985,20 +1985,20 @@ body {
 }
 
 /* .brand-mark targets the logo image directly (not scoped to a parent
-         container) so every instance of the logo — navbar, footer, auth pages,
-         admin panels, dropdowns — renders at the exact same size, shape and
-         background color, in every theme. */
+             container) so every instance of the logo — navbar, footer, auth pages,
+             admin panels, dropdowns — renders at the exact same size, shape and
+             background color, in every theme. */
 .brand-mark {
-  width: 48px !important;
-  height: 48px !important;
+  width: 34px !important;
+  height: 34px !important;
 
-  border-radius: 14px !important;
+  border-radius: 10px !important;
 
   background: linear-gradient(135deg, #FFD600, #FFE866) !important;
 
   color: #1565C0 !important;
 
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 800;
 
   display: flex !important;
@@ -2010,7 +2010,7 @@ body {
 
 .navbar-brand .brand-text,
 .auth-logo .brand-text {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #1F2937 !important;
   text-shadow: none !important;
@@ -2092,6 +2092,42 @@ body {
   transform: translateY(-2px) !important;
 }
 
+/* Navbar alignment fix (992-1199.98px): shrink the icon buttons and auth pills
+       so the full nav fits in one row instead of wrapping. Needs !important + this
+       position in the file to beat the unconditional 44px/1.1rem rules above. */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+
+  /* Slightly tighter gap so everything fits, but not so tight it looks cramped */
+  .navbar-actions {
+    gap: 0.5rem !important;
+  }
+
+  .navbar-stationery .navbar-actions .btn-icon,
+  .navbar-stationery .dropdown>.btn-icon {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+  }
+
+  /* Give Login / Sign Up a fixed height that matches the icon buttons above,
+       centered text and comfortable horizontal padding, instead of the old
+       squashed 0.35rem vertical padding that made them look misaligned. */
+  .navbar-actions .auth-nav-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    height: 36px !important;
+    padding: 0 0.9rem !important;
+    font-size: 0.8rem !important;
+    line-height: 1 !important;
+    white-space: nowrap !important;
+  }
+
+  .navbar-actions .admin-login-btn {
+    font-size: 0.85rem;
+  }
+}
+
 .btn-primary-custom,
 .cart-add-btn,
 .category-browse,
@@ -2107,7 +2143,7 @@ body {
   background: var(--color-secondary) !important;
   border-color: var(--color-secondary) !important;
   /* Always dark text on the gold/yellow background — var(--color-text) flips to
-             near-white in dark mode and breaks contrast, so this is intentionally fixed. */
+                 near-white in dark mode and breaks contrast, so this is intentionally fixed. */
   color: #1F2937 !important;
 }
 
@@ -2175,10 +2211,10 @@ body {
 }
 
 /* Product detail image — style.css wraps this in a padded, gradient-framed
-         box with a fixed 1:1 crop, which leaves visible dead space around/below
-         the photo instead of it filling the column. Strip the frame and stretch
-         the image to fill the full height of its column (it matches the product
-         info column's height automatically via the row's default flex stretch). */
+             box with a fixed 1:1 crop, which leaves visible dead space around/below
+             the photo instead of it filling the column. Strip the frame and stretch
+             the image to fill the full height of its column (it matches the product
+             info column's height automatically via the row's default flex stretch). */
 .product-detail-img {
   padding: 0 !important;
   background: none !important;
@@ -2434,8 +2470,8 @@ textarea:focus-visible,
 }
 
 /* ============================================
-           Trusted By Section
-        ============================================ */
+               Trusted By Section
+            ============================================ */
 
 /* Trusted Brands */
 
@@ -2502,9 +2538,9 @@ textarea:focus-visible,
 }
 
 /* =====================================================
-           AUTH LOGO
-           (Same look as navbar without affecting the navbar)
-           ===================================================== */
+               AUTH LOGO
+               (Same look as navbar without affecting the navbar)
+               ===================================================== */
 
 .auth-logo {
   display: inline-flex;
@@ -2535,8 +2571,8 @@ textarea:focus-visible,
 }
 
 /* =========================
-           Footer Logo
-        ========================= */
+               Footer Logo
+            ========================= */
 
 .footer-logo {
   display: inline-flex;
@@ -2576,8 +2612,8 @@ textarea:focus-visible,
 }
 
 /* Fix: an earlier rule in this file sets .nav-link:hover/.active color to
-         var(--color-primary), which in dark mode resolves to blue, silently
-         overriding dark-mode.css's intended gold highlight. Restore the gold. */
+             var(--color-primary), which in dark mode resolves to blue, silently
+             overriding dark-mode.css's intended gold highlight. Restore the gold. */
 [data-theme="dark"] .navbar-stationery .nav-link:hover,
 [data-theme="dark"] .navbar-stationery .nav-link:focus-visible,
 [data-theme="dark"] .navbar-stationery .nav-link.active {
@@ -2585,8 +2621,8 @@ textarea:focus-visible,
 }
 
 /* ===========================================
-         KEEP DOODLE DESK PILL IDENTICAL IN DARK MODE
-         =========================================== */
+             KEEP DOODLE DESK PILL IDENTICAL IN DARK MODE
+             =========================================== */
 
 :root[data-theme="dark"] .navbar-brand {
   display: inline-flex !important;
@@ -2656,8 +2692,8 @@ textarea:focus-visible,
 }
 
 /* ============================================
-         Home 2 — Redeveloped Hero & Sections
-         ============================================ */
+             Home 2 — Redeveloped Hero & Sections
+             ============================================ */
 
 .home2-hero {
   position: relative;

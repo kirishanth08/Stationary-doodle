@@ -1641,28 +1641,6 @@ img {
 
 }
 
-/* Navbar alignment fix: right after Bootstrap's lg breakpoint (992px) there isn't
-   quite enough room for 8 nav links plus the icon/auth cluster, causing overlap. */
-@media (min-width: 992px) and (max-width: 1200px) {
-  .navbar-stationery .navbar-nav {
-    gap: 0;
-  }
-
-  .navbar-stationery .nav-link {
-    padding: 0.75rem 0.6rem !important;
-    font-size: 0.9rem;
-  }
-
-  .navbar-stationery .navbar-actions {
-    gap: 0.35rem;
-  }
-
-  .navbar-actions .auth-nav-btn {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.85rem;
-  }
-}
-
 /* --- Responsive: Mobile --- */
 @media (max-width: 640px) {
   :root {
@@ -3506,4 +3484,40 @@ body.nav-open {
 
 .navbar-stationery .dropdown-toggle::before {
   display: none !important;
+}
+
+/* Navbar alignment fix: between Bootstrap's lg breakpoint (992px) and xl (1200px)
+   the .container is fixed at 960px, which isn't wide enough for 8 nav links plus
+   the icon/auth-button cluster, so the row wrapped and threw the icons out of line.
+   Instead of dropping to the hamburger menu here, free the container to use the
+   full viewport width and shrink the nav links so everything keeps to one row -
+   placed at the end of the file since this stylesheet redeclares .navbar-stationery
+   .nav-link/.navbar-nav/.container further up, and later rules win ties. Icon-button
+   and auth-pill sizing for this same range live in doodle-desk.css, which loads
+   after this file and has its own !important rules on those elements. */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+  .navbar-stationery .container {
+    max-width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .navbar-stationery .navbar-brand {
+    font-size: 1.1rem;
+    padding-left: 0.5rem;
+  }
+
+  .navbar-stationery .navbar-nav {
+    gap: 0 !important;
+  }
+
+  .navbar-stationery .nav-link {
+    padding: 0.5rem 0.32rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  .navbar-controls,
+  .navbar-actions {
+    gap: 0.2rem !important;
+  }
 }

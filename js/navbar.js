@@ -231,7 +231,7 @@ window.DoodleNavbar = {
       <div class="container">
         <div class="row g-4">
           <div class="col-lg-4 col-md-6">
-            <h5 class="footer-brand navbar-brand"><img src="../assets/images/logo-mark.svg" alt="Doodle Desk" class="brand-mark" width="48" height="48"> <span class="brand-text">Doodle <span class="brand-accent">Desk</span></span></h5>
+            <h5 class="footer-brand"><a class="navbar-brand" href="index.html"><img src="../assets/images/logo-mark.svg" alt="Doodle Desk" class="brand-mark" width="36" height="36"> <span class="brand-text">Doodle <span class="brand-accent">Desk</span></span></a></h5>
             <p>Your trusted destination for premium stationery, school essentials, and creative tools. Everything you need to write, create, and learn.</p>
             <div class="social-links mt-3">
               <a href="https://www.facebook.com/" target="_blank" rel="noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
