@@ -118,6 +118,7 @@ window.DoodleNavbar = {
         aria-expanded="false">
 
         Home
+        <i class="fas fa-chevron-down nav-dropdown-icon" aria-hidden="true"></i>
     </a>
 
     <ul class="dropdown-menu shadow-sm border-0">

@@ -370,3 +370,15 @@
   margin-right: 0.5rem !important;
   margin-left: 0 !important;
 }
+
+/* Navbar underline RTL fix */
+[dir="rtl"] .navbar-stationery .nav-link::after {
+  left: 1rem !important;
+  right: 1rem !important;
+  transform-origin: right center !important;
+}
+
+[dir="rtl"] .nav-dropdown-icon {
+  margin-left: 0 !important;
+  margin-right: .4rem !important;
+}

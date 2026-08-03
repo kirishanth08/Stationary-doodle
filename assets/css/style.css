@@ -1851,31 +1851,34 @@ main {
 }
 
 .navbar-stationery .nav-link::after {
+  content: "";
+  position: absolute;
   left: 50%;
-  bottom: 0.35rem;
-  width: calc(100% - 2rem);
-  border-radius: 999px;
+  bottom: -4px;
+  width: 70%;
+  height: 3px;
+  background: #D4AF37;
+  border-radius: 50px;
   transform: translateX(-50%) scaleX(0);
   transform-origin: center;
-  background: linear-gradient(90deg, var(--color-secondary) 0%, var(--color-primary-light) 100%);
-  height: 3px;
-}
-
-.navbar-stationery .nav-link:hover,
-.navbar-stationery .nav-link.active {
-  background: rgba(var(--color-primary-rgb), 0.08);
+  transition: transform .3s ease;
 }
 
 .navbar-stationery .nav-link:hover::after,
 .navbar-stationery .nav-link.active::after {
-  width: calc(100% - 2rem);
   transform: translateX(-50%) scaleX(1);
+}
+
+.navbar-stationery .nav-link:hover,
+.navbar-stationery .nav-link.active {
+  background: transparent !important;
 }
 
 .navbar-stationery .nav-link.active {
   color: var(--color-primary-dark) !important;
-  box-shadow: inset 0 0 0 1px rgba(var(--color-primary-rgb), 0.08);
+  box-shadow: none !important;
 }
+
 
 .navbar-stationery .navbar-toggler {
   border: 0;
@@ -3473,4 +3476,34 @@ body.nav-open {
   align-items: center;
   gap: .75rem;
   flex-direction: row;
+}
+
+.navbar-stationery .nav-item.active>.nav-link,
+.navbar-stationery .nav-link.active,
+.navbar-stationery .dropdown-toggle.active {
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.navbar-stationery .nav-link::before {
+  display: none !important;
+}
+
+.navbar-stationery .dropdown-toggle::after {
+  display: none !important;
+}
+
+.navbar-stationery .dropdown-toggle {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-stationery .dropdown-toggle.active {
+  background: none !important;
+  box-shadow: none !important;
+}
+
+.navbar-stationery .dropdown-toggle::before {
+  display: none !important;
 }
